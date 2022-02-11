@@ -7,26 +7,17 @@
 
 import UIKit
 
-let userDefaults = UserDefaults.standard
-
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let vc: UIViewController
-        var isLoggedIn = userDefaults.bool(forKey: "isLoggedIn")
-        
-        // temp
-        //isLoggedIn = true
-        
-        
-        if isLoggedIn == false {
+
+        if LoginManager.isLoggedIn == false {
             vc = LoginViewController()
         } else {
             vc = MainViewController()

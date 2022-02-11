@@ -15,7 +15,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupMap()
     }
     
@@ -31,14 +30,7 @@ class MapViewController: UIViewController {
         annotation.title = "School"
         annotation.subtitle = "Ooh"
         map.addAnnotation(annotation)
-        
         map.delegate = self
-        //map.mapClick = { coordinates in
-        //    let latitude = coordinates.latitude
-        //}
-        
-        //map.target(forAction: #selector(handleClick), withSender: .)
-        
         view.addSubview(map)
     }
 
@@ -50,10 +42,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
-    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        //self.selectedAnnotation = view.annotation as? MKPointAnnotation
-        //Navigation.nav.viewControllers = [DescriptionViewController()]
         Navigation.nav.pushViewController(DescriptionViewController(), animated: false)
     }
     

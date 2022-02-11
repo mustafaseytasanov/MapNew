@@ -7,7 +7,9 @@
 
 import Foundation
 
-class ViewModel {
+class LoginViewModel {
     
     let elements = [Enum.login, Enum.email, Enum.password, Enum.repeatPassword]
+    let elementsTwo = [Enum.email, Enum.password]
+    
 }

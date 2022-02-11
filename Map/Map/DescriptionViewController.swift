@@ -17,18 +17,10 @@ class DescriptionViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
-        //self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: #selector(funct))
-        //self.navigationItem.leftBarButtonItem = UIBarButtonItem
-        self.navigationItem.leftBarButtonItem
         setupTableView()
     }
                                                                  
-    @objc func funct() {
-        print("qwe")
-    }
                                                                  
-                                                                 
-    
     func setupTableView() {
         //tableView2 = UITableView(frame: view.bounds, style: .plain)
         tableView2 = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -53,12 +45,10 @@ extension DescriptionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: TableViewCellOne = tableView2.dequeueReusableCell(withIdentifier: "TableViewCellOne") as! TableViewCellOne
-        cell.configure(with: "")
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     

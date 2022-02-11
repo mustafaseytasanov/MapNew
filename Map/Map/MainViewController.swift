@@ -17,7 +17,6 @@ class MainViewController: UIViewController {
 
         self.title = "Основной экран"
         setButton()
-        
         openMap()
     }
     
@@ -30,7 +29,7 @@ class MainViewController: UIViewController {
     }
 
     @objc func handleButton() {
-        userDefaults.set(false, forKey: "isLoggedIn")
+        LoginManager.isLoggedIn = false
         Navigation.nav.viewControllers = [LoginViewController()]
     }
     
@@ -44,7 +43,6 @@ class MainViewController: UIViewController {
     }
     
     @objc func handleButton2() {
-        //Navigation.nav.pushViewController(MapViewController(), animated: false)
         Navigation.nav.viewControllers = [MapViewController()]
     }
     

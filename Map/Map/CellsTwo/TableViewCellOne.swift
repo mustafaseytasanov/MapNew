@@ -15,7 +15,6 @@ final class TableViewCellOne: UITableViewCell {
     
     //weak var delegate: TableViewCellOneDelegate?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -36,7 +35,6 @@ final class TableViewCellOne: UITableViewCell {
     
     private var colorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
         return view
     }()
     
@@ -44,8 +42,6 @@ final class TableViewCellOne: UITableViewCell {
         let button = UIButton()
         return button
     }()
-    
-    
     
     
     func configure(with title: String) {
@@ -56,7 +52,6 @@ final class TableViewCellOne: UITableViewCell {
     func setupUI() {
         selectionStyle = .none
         colorView.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(colorView)
         
         NSLayoutConstraint.activate([

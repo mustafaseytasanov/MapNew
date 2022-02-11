@@ -16,16 +16,16 @@ var emailIn = ""
 var passwordIn = ""
 
 
-protocol TableViewSecondCellDelegate: AnyObject {
+protocol TableViewInputCellDelegate: AnyObject {
     func arraySignup(index: Int, value: Int)
     func arraySignin(index: Int, value: Int)
     func selectedIndex() -> Int
 }
 
-class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
+class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
 
     
-    weak var delegate: TableViewSecondCellDelegate?
+    weak var delegate: TableViewInputCellDelegate?
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -161,7 +161,6 @@ class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
         }
     }
     @objc func funcRepeatPasswordEnd(_ textField: UITextField) {
-        print(passwordUp, repeatPassword)
         repeatPassword = textField.text ?? "nil"
         if repeatPassword == passwordUp {
             colorOne(textField: textField, boolValue: true)
