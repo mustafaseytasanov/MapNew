@@ -29,7 +29,6 @@ class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        //textField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -97,13 +96,13 @@ class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
                 textField.addTarget(self, action: #selector(funcLoginEnd(_:)), for: .editingChanged)
             case 1:
                 textField.placeholder = "E-mail"
-                userDefaults.string(forKey: "email")
+                UserDefaults.standard.string(forKey: "email")
                 textField.isSecureTextEntry = false
                 textField.addTarget(self, action: #selector(funcEmailEnd(_:)), for: .editingChanged)
                 
             case 2:
                 textField.placeholder = "Пароль"
-                userDefaults.string(forKey: "password")
+                UserDefaults.standard.string(forKey: "password")
                 textField.isSecureTextEntry = true
                 textField.addTarget(self, action: #selector(funcPasswordEnd(_:)), for: .editingChanged)
                 
@@ -175,7 +174,7 @@ class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
     
     @objc func funcEmailIn(_ textField: UITextField) {
         emailIn = textField.text ?? "nil"
-        if (emailIn == userDefaults.string(forKey: "email")) {
+        if (emailIn == UserDefaults.standard.string(forKey: "email")) {
             delegate?.arraySignin(index: 0, value: 1)
         } else {
             delegate?.arraySignin(index: 0, value: 0)
@@ -184,7 +183,7 @@ class TableViewSecondCell: UITableViewCell, UITextFieldDelegate  {
     
     @objc func funcPasswordIn(_ textField: UITextField) {
         passwordIn = textField.text ?? "nil"
-        if (passwordIn == userDefaults.string(forKey: "password")) {
+        if (passwordIn == UserDefaults.standard.string(forKey: "password")) {
             delegate?.arraySignin(index: 1, value: 1)
         } else {
             delegate?.arraySignin(index: 1, value: 0)
