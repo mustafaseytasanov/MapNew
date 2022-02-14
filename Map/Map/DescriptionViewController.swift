@@ -22,7 +22,6 @@ class DescriptionViewController: UIViewController {
                                                                  
                                                                  
     func setupTableView() {
-        //tableView2 = UITableView(frame: view.bounds, style: .plain)
         tableView2 = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         tableView2.register(TableViewCellOne.self, forCellReuseIdentifier: "TableViewCellOne")
         tableView2.separatorStyle = .none
