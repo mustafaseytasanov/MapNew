@@ -22,29 +22,19 @@ extension DataSourceSignin: UITableViewDataSource {
         let cell: TableViewInputCell = tableView.dequeueReusableCell(withIdentifier: "TableViewInputCell") as! TableViewInputCell
             
         cell.configure(with: object.elementsTwo[indexPath.row])
-        //cell.delegate = self
+        cell.delegate = self
         return cell
     }
 
 }
 
 
-//extension DataSourceRegistration: TableViewInputCellDelegate {
-    
-    /*
+extension DataSourceSignin: TableViewInputCellDelegate {
+        
     func arraySignin(index: Int, value: Int) {
-        //temp
-        
+        allElementsTwo[index] = value
     }
-    
-    func selectedIndex() -> Int {
-        // temp
-        return 0
-    }
-    
-    func arraySignup(index: Int, value: Int) {
-        
-    }*/
-    
 
-//}
+    func arraySignup(index: Int, value: Int) {}
+    
+}

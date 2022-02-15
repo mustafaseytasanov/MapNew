@@ -8,7 +8,6 @@
 import UIKit
 
 class DataSourceRegistration: NSObject {
-
     let object = LoginViewModel()
 }
 
@@ -23,32 +22,19 @@ extension DataSourceRegistration: UITableViewDataSource {
         
         let cell: TableViewInputCell = tableView.dequeueReusableCell(withIdentifier: "TableViewInputCell") as! TableViewInputCell
         
-        
         cell.configure(with: object.elements[indexPath.row])
-        
         cell.delegate = self
         return cell
     }
-
 }
 
 
 extension DataSourceRegistration: TableViewInputCellDelegate {
     
-    
-    func arraySignin(index: Int, value: Int) {
-        //temp
-        
-    }
-    
-    func selectedIndex() -> Int {
-        // temp
-        return 0
-    }
-    
+    func arraySignin(index: Int, value: Int) {}
+
     func arraySignup(index: Int, value: Int) {
-        
+        allElements[index] = value
     }
-    
 
 }

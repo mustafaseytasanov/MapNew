@@ -19,7 +19,6 @@ var passwordIn = ""
 protocol TableViewInputCellDelegate: AnyObject {
     func arraySignup(index: Int, value: Int)
     func arraySignin(index: Int, value: Int)
-    func selectedIndex() -> Int
 }
 
 class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
@@ -70,13 +69,14 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
     
     func configure(with title: Enum) {
         
-        let flagValue = delegate?.selectedIndex()
+        let flagValue = flag
         
         if flagValue == 0 {
         
             switch title.rawValue {
             case 1:
                 textField.placeholder = "E-mail"
+                textField.isSecureTextEntry = false
                 textField.addTarget(self, action: #selector(funcEmailIn(_:)), for: .editingChanged)
             
             case 2:
@@ -96,13 +96,12 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
                 textField.addTarget(self, action: #selector(funcLoginEnd(_:)), for: .editingChanged)
             case 1:
                 textField.placeholder = "E-mail"
-                UserDefaults.standard.string(forKey: "email")
                 textField.isSecureTextEntry = false
                 textField.addTarget(self, action: #selector(funcEmailEnd(_:)), for: .editingChanged)
                 
             case 2:
-                textField.placeholder = "Пароль"
-                UserDefaults.standard.string(forKey: "password")
+                //textField.placeholder = "Пароль"
+                textField.placeholder = "Password"
                 textField.isSecureTextEntry = true
                 textField.addTarget(self, action: #selector(funcPasswordEnd(_:)), for: .editingChanged)
                 
@@ -173,7 +172,7 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
     
     @objc func funcEmailIn(_ textField: UITextField) {
         emailIn = textField.text ?? "nil"
-        if (emailIn == UserDefaults.standard.string(forKey: "email")) {
+        if emailIn == LoginManager.email {
             delegate?.arraySignin(index: 0, value: 1)
         } else {
             delegate?.arraySignin(index: 0, value: 0)
@@ -182,7 +181,7 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
     
     @objc func funcPasswordIn(_ textField: UITextField) {
         passwordIn = textField.text ?? "nil"
-        if (passwordIn == UserDefaults.standard.string(forKey: "password")) {
+        if passwordIn == LoginManager.password {
             delegate?.arraySignin(index: 1, value: 1)
         } else {
             delegate?.arraySignin(index: 1, value: 0)

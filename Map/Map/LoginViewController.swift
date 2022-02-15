@@ -7,27 +7,18 @@
 
 import UIKit
 
+var allElements = [0, 0, 0, 0, 0]
+var allElementsTwo = [0, 0]
+var flag = 1
+
 class LoginViewController: UIViewController {
         
     var tableView = UITableView()
-    let object = LoginViewModel()
-    var flag = 1
-    var allElements = [0, 0, 0, 0, 0]
-    var allElementsTwo = [0, 0]
     
     var dataSource = DataSourceRegistration()
     var dataSourceTwo = DataSourceSignin()
-    
-    var header = Header()
-    var footer = Footer()
-    
-    let head = UIView()
-    var segment = UISegmentedControl()
-    
-    let foot = UIView()
-    var label = UILabel()
-    var switchh = UISwitch()
-    var button = UIButton()
+    var authTableHeader = AuthTableHeader()
+    var authTableFooter = AuthTableFooter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,95 +31,59 @@ class LoginViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         tableView.dataSource = dataSource
-        //tableView.dataSource = dataSourceTwo
-
-        head.frame = CGRect(x: 0, y: 0, width: 0, height: 100)
-        segment = header.segmentControl
-        head.addSubview(segment)
-        setupHeaderUI()
-        tableView.tableHeaderView = head
-        
-        foot.frame = CGRect(x: 0, y: 0, width: 0, height: 200)
-        label = footer.label
-        foot.addSubview(label)
-        switchh = footer.switchOption
-        foot.addSubview(switchh)
-        button = footer.buttonOk
-        foot.addSubview(button)
-        setupFooterUI()
-        tableView.tableFooterView = foot
-        
-        
-        
+        tableView.tableHeaderView = authTableHeader.myHeaderView()
+        tableView.tableFooterView = authTableFooter.myFooterOneView()
+        authTableHeader.delegate = self
+        authTableFooter.delegate = self
         self.view.addSubview(self.tableView)
-        
     }
+
+}
+
+
+extension LoginViewController: HeaderDelegate {
     
-    
-    func setupHeaderUI() {
-        head.translatesAutoresizingMaskIntoConstraints = false
-        segment.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            segment.heightAnchor.constraint(equalToConstant: 40),
-            segment.topAnchor.constraint(equalTo: head.topAnchor, constant: 0),
-            segment.bottomAnchor.constraint(equalTo: head.bottomAnchor, constant: 0),
-            segment.leadingAnchor.constraint(equalTo: head.leadingAnchor, constant: 16),
-            segment.trailingAnchor.constraint(equalTo: head.trailingAnchor, constant: -16),
-            
-        ])
-    }
-    
-    func setupFooterUI() {
-        foot.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-        switchh.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            label.heightAnchor.constraint(equalToConstant: 40),
-            label.topAnchor.constraint(equalTo: foot.topAnchor, constant: 200),
-            label.bottomAnchor.constraint(equalTo: foot.bottomAnchor, constant: 0),
-            label.leadingAnchor.constraint(equalTo: foot.leadingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: foot.trailingAnchor, constant: -16),
-            switchh.heightAnchor.constraint(equalToConstant: 40),
-            switchh.topAnchor.constraint(equalTo: foot.topAnchor, constant: 300),
-            switchh.bottomAnchor.constraint(equalTo: foot.bottomAnchor, constant: 0),
-            switchh.leadingAnchor.constraint(equalTo: foot.leadingAnchor, constant: UIScreen.main.bounds.width - switchh.bounds.width-16),
-            button.heightAnchor.constraint(equalToConstant: 30),
-            button.topAnchor.constraint(equalTo: foot.topAnchor, constant: 400),
-            button.bottomAnchor.constraint(equalTo: foot.bottomAnchor, constant: 0),
-            button.leadingAnchor.constraint(equalTo: foot.leadingAnchor, constant: 32),
-            button.trailingAnchor.constraint(equalTo: foot.trailingAnchor, constant: -32),
-        ])
-    }
-    
-    
-    
-    
-    func storeKeys() {
-        UserDefaults.standard.setValue(login, forKey: "login")
-        UserDefaults.standard.setValue(emailUp, forKey: "email")
-        UserDefaults.standard.setValue(passwordUp, forKey: "password")
+    func segmentChanged(param: UISegmentedControl) {
+        flag = param.selectedSegmentIndex
+        tableView.reloadData()
+        if flag == 1 {
+            tableView.dataSource = dataSource
+            tableView.tableFooterView = authTableFooter.myFooterOneView()
+        } else {
+            tableView.dataSource = dataSourceTwo
+            tableView.tableFooterView = authTableFooter.myFooterTwoView()
+        }
     }
 }
 
 
-
-
-
-extension LoginViewController: TableViewInputCellDelegate {
+extension LoginViewController: FooterDelegate {
     
-    func selectedIndex() -> Int {
-        return flag
-    }
-
-    func arraySignup(index: Int, value: Int) {
-        allElements[index] = value
+    func switchUp(param: UISwitch) {
+        if param.isOn {
+            allElements[4] = 1
+        } else {
+            allElements[4] = 0
+        }
     }
     
-    func arraySignin(index: Int, value: Int) {
-        allElementsTwo[index] = value
+    func buttonSelected(param: UIButton) {
+        
+        if flag == 1 {
+            if allElements[0] == 1 && allElements[1] == 1 && allElements[2] == 1 && allElements[3] == 1 && allElements[4] == 1 {
+                
+                Navigation.nav.viewControllers = [MainViewController()]
+                LoginManager.login = login
+                LoginManager.email = emailUp
+                LoginManager.password = passwordUp
+                LoginManager.isLoggedIn = true
+            }
+        } else {
+            if allElementsTwo[0] == 1 && allElementsTwo[1] == 1 {
+                Navigation.nav.viewControllers = [MainViewController()]
+                LoginManager.isLoggedIn = true
+            }
+        }
     }
-
 }
