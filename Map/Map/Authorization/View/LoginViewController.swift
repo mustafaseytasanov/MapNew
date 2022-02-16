@@ -7,8 +7,8 @@
 
 import UIKit
 
-var allElements = [0, 0, 0, 0, 0]
-var allElementsTwo = [0, 0]
+var allElements = [false, false, false, false, false]
+var allElementsTwo = [false, false]
 var flag = 1
 
 class LoginViewController: UIViewController {
@@ -20,9 +20,22 @@ class LoginViewController: UIViewController {
     var authTableHeader = AuthTableHeader()
     var authTableFooter = AuthTableFooter()
     
+    var viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: String(describing: Self.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        bind()
     }
     
     private func setupTableView() {
@@ -38,7 +51,13 @@ class LoginViewController: UIViewController {
         authTableFooter.delegate = self
         self.view.addSubview(self.tableView)
     }
-
+    
+    private func bind() {
+        
+        viewModel.checkingText()
+        //print(res)
+    }
+    
 }
 
 
@@ -58,32 +77,22 @@ extension LoginViewController: HeaderDelegate {
 }
 
 
-extension LoginViewController: FooterDelegate {
+extension LoginViewController: AuthTableFooterDelegate {
     
-    func switchUp(param: UISwitch) {
-        if param.isOn {
-            allElements[4] = 1
-        } else {
-            allElements[4] = 0
-        }
-    }
-    
-    func buttonSelected(param: UIButton) {
+    func buttonHandleUp(param: UIButton) {
         
-        if flag == 1 {
-            if allElements[0] == 1 && allElements[1] == 1 && allElements[2] == 1 && allElements[3] == 1 && allElements[4] == 1 {
-                
-                Navigation.nav.viewControllers = [MainViewController()]
-                LoginManager.login = login
-                LoginManager.email = emailUp
-                LoginManager.password = passwordUp
-                LoginManager.isLoggedIn = true
-            }
-        } else {
-            if allElementsTwo[0] == 1 && allElementsTwo[1] == 1 {
-                Navigation.nav.viewControllers = [MainViewController()]
-                LoginManager.isLoggedIn = true
-            }
-        }
+        viewModel.checkingText()
+
+        /*
+        if allElements[0] == true && allElements[1] == true && allElements[2] == true && allElements[3] == true && allElements[4] == true {
+            
+            Navigation.nav.viewControllers = [MainViewController()]
+            
+            LoginManager.login = login
+            LoginManager.email = emailUp
+            LoginManager.password = passwordUp
+            LoginManager.isLoggedIn = true
+            
+        }*/
     }
 }

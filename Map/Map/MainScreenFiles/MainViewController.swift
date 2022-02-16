@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
 
     @objc func handleButton() {
         LoginManager.isLoggedIn = false
-        Navigation.nav.viewControllers = [LoginViewController()]
+        Navigation.nav.viewControllers = [LoginViewController(viewModel: LoginViewModel())]
     }
     
     

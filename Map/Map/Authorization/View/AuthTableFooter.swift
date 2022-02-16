@@ -7,16 +7,15 @@
 
 import UIKit
 
-
-protocol FooterDelegate: AnyObject {
-    func switchUp(param: UISwitch)
-    func buttonSelected(param: UIButton)
+protocol AuthTableFooterDelegate: AnyObject {
+    func buttonHandleUp(param: UIButton)
 }
 
 
 class AuthTableFooter: UIView {
+        
+    weak var delegate: AuthTableFooterDelegate?
     
-    weak var delegate: FooterDelegate?
     
     var label: UILabel = {
         let labelText = UILabel()
@@ -79,15 +78,24 @@ class AuthTableFooter: UIView {
 
     
     @objc func buttonHandleUp(param: UIButton) {
-        delegate?.buttonSelected(param: buttonUp)
+        
+        delegate?.buttonHandleUp(param: param)
+        
     }
     
     @objc func buttonHandleIn(param: UIButton) {
-        delegate?.buttonSelected(param: buttonIn)
+        if allElementsTwo[0] == true && allElementsTwo[1] == true {
+            Navigation.nav.viewControllers = [MainViewController()]
+            LoginManager.isLoggedIn = true
+        }
     }
     
     @objc func handleSwitchUp(param: UISwitch) {
-        delegate?.switchUp(param: switchOption)
+        if param.isOn {
+            allElements[4] = true
+        } else {
+            allElements[4] = false
+        }
     }
     
 }

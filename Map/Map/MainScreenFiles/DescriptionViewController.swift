@@ -16,7 +16,18 @@ class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        let item1 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        let item2 = UIBarButtonItem(
+            image: UIImage(named: "dotsIcon"),
+            style: .done,
+            target: self,
+            action: nil)
+        self.navigationItem.rightBarButtonItems = [item1, item2]
+        /*self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "backIcon"),
+            style: .done,
+            target: self,
+            action: nil)*/
         setupTableView()
     }
                                                                  

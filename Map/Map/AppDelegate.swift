@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let vc: UIViewController
 
+        
         if LoginManager.isLoggedIn == false {
-            vc = LoginViewController()
+            vc = LoginViewController(viewModel: LoginViewModel())
         } else {
             vc = MainViewController()
         }

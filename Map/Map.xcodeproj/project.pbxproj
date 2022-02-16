@@ -71,12 +71,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		844D615227A7C4580012EE9B /* Cells */ = {
+		844B121F27BCFCE800635C1E /* MainScreenFiles */ = {
+			isa = PBXGroup;
+			children = (
+				844ED1B027AD23D80050C874 /* DescriptionViewController.swift */,
+				846C47A127ABF69200E7784F /* MapViewController.swift */,
+				8478CEF627A3DA2800BB4731 /* MainViewController.swift */,
+				844ED1B227AD460B0050C874 /* CellsTwo */,
+			);
+			path = MainScreenFiles;
+			sourceTree = "<group>";
+		};
+		844B122027BCFEA500635C1E /* View */ = {
 			isa = PBXGroup;
 			children = (
 				84AA5A7A279EA93E00157AFA /* TableViewInputCell.swift */,
+				8456B44C27BA56990040EB32 /* AuthTableHeader.swift */,
+				8456B44E27BA64260040EB32 /* AuthTableFooter.swift */,
+				8456B44A27BA4F390040EB32 /* DataSourceSignin.swift */,
+				8456B44827BA36290040EB32 /* DataSourceRegistration.swift */,
+				84AA5A78279EA61700157AFA /* LoginViewController.swift */,
 			);
-			path = Cells;
+			path = View;
+			sourceTree = "<group>";
+		};
+		844B122127BD018800635C1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				844E6A2B279FD1DE0039B5CF /* Enum.swift */,
+				8483090327B533B4001DFB82 /* LoginManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		844B122227BD019500635C1E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				844D550727B681920014E66C /* LoginViewModel.swift */,
+				84549EA227A2864C001A49BD /* Helpers */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		844B122327BD078C00635C1E /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				844B122127BD018800635C1E /* Model */,
+				844B122027BCFEA500635C1E /* View */,
+				844B122227BD019500635C1E /* ViewModel */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		844ED1B227AD460B0050C874 /* CellsTwo */ = {
@@ -119,24 +163,12 @@
 			children = (
 				84AA5A64279E9B9500157AFA /* AppDelegate.swift */,
 				8478CEFA27A3EDAE00BB4731 /* Navigation.swift */,
-				844E6A2B279FD1DE0039B5CF /* Enum.swift */,
-				844D550727B681920014E66C /* LoginViewModel.swift */,
-				8483090327B533B4001DFB82 /* LoginManager.swift */,
-				844D615227A7C4580012EE9B /* Cells */,
-				844ED1B227AD460B0050C874 /* CellsTwo */,
-				84AA5A6D279E9B9700157AFA /* Assets.xcassets */,
 				84AA5A6F279E9B9700157AFA /* LaunchScreen.storyboard */,
 				8444661927BBD36E00DC79CB /* Localizable.strings */,
-				8478CEF627A3DA2800BB4731 /* MainViewController.swift */,
-				846C47A127ABF69200E7784F /* MapViewController.swift */,
-				844ED1B027AD23D80050C874 /* DescriptionViewController.swift */,
+				84AA5A6D279E9B9700157AFA /* Assets.xcassets */,
 				84AA5A72279E9B9700157AFA /* Info.plist */,
-				84549EA227A2864C001A49BD /* Helpers */,
-				8456B44827BA36290040EB32 /* DataSourceRegistration.swift */,
-				8456B44A27BA4F390040EB32 /* DataSourceSignin.swift */,
-				84AA5A78279EA61700157AFA /* LoginViewController.swift */,
-				8456B44C27BA56990040EB32 /* AuthTableHeader.swift */,
-				8456B44E27BA64260040EB32 /* AuthTableFooter.swift */,
+				844B122327BD078C00635C1E /* Authorization */,
+				844B121F27BCFCE800635C1E /* MainScreenFiles */,
 			);
 			path = Map;
 			sourceTree = "<group>";

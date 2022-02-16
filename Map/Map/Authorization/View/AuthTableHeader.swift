@@ -40,7 +40,6 @@ class AuthTableHeader: UIView {
             segmentControl.bottomAnchor.constraint(equalTo: viewHeader.bottomAnchor, constant: -10),
             segmentControl.leadingAnchor.constraint(equalTo: viewHeader.leadingAnchor, constant: 20),
             segmentControl.trailingAnchor.constraint(equalTo: viewHeader.trailingAnchor, constant: -20)
-            
         ])
         return viewHeader
     }
@@ -48,6 +47,5 @@ class AuthTableHeader: UIView {
     @objc func segmentHandle(param: UISegmentedControl) {
         delegate?.segmentChanged(param: segmentControl)
     }
-    
-    
+
 }

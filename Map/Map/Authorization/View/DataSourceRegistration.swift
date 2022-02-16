@@ -9,10 +9,10 @@ import UIKit
 
 class DataSourceRegistration: NSObject {
     let object = LoginViewModel()
+    static var arrayTextFieldElements = ["", "", "", ""]
 }
 
 extension DataSourceRegistration: UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -31,10 +31,17 @@ extension DataSourceRegistration: UITableViewDataSource {
 
 extension DataSourceRegistration: TableViewInputCellDelegate {
     
-    func arraySignin(index: Int, value: Int) {}
-
-    func arraySignup(index: Int, value: Int) {
-        allElements[index] = value
+    func textChanged(text: String, cellType: Enum) {
+        
+        switch cellType {
+        case .login:
+            DataSourceRegistration.arrayTextFieldElements[0] = text
+        case .email:
+            DataSourceRegistration.arrayTextFieldElements[1] = text
+        case .password:
+            DataSourceRegistration.arrayTextFieldElements[2] = text
+        case .repeatPassword:
+            DataSourceRegistration.arrayTextFieldElements[3] = text
+        }
     }
-
 }

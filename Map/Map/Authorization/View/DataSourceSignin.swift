@@ -25,16 +25,13 @@ extension DataSourceSignin: UITableViewDataSource {
         cell.delegate = self
         return cell
     }
-
 }
-
 
 extension DataSourceSignin: TableViewInputCellDelegate {
-        
-    func arraySignin(index: Int, value: Int) {
-        allElementsTwo[index] = value
+    func textChanged(text: String, cellType: Enum) {
+        //print(text, cellType)
     }
-
-    func arraySignup(index: Int, value: Int) {}
-    
 }
+
+
+
