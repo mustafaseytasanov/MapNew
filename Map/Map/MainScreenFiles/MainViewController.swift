@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
 
     @objc func handleButton() {
         LoginManager.isLoggedIn = false
-        Navigation.nav.viewControllers = [LoginViewController(viewModel: LoginViewModel())]
+        AppDelegate.nav.viewControllers = [LoginViewController(viewModel: LoginViewModel())]
     }
     
     
@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func handleButton2() {
-        Navigation.nav.viewControllers = [MapViewController()]
+        //AppDelegate.nav.viewControllers = [MapViewController()]
     }
     
 }

@@ -9,7 +9,6 @@ import UIKit
 
 class DataSourceRegistration: NSObject {
     let object = LoginViewModel()
-    static var arrayTextFieldElements = ["", "", "", ""]
 }
 
 extension DataSourceRegistration: UITableViewDataSource {
@@ -31,17 +30,33 @@ extension DataSourceRegistration: UITableViewDataSource {
 
 extension DataSourceRegistration: TableViewInputCellDelegate {
     
+    func textFieldColor() {
+        
+    }
+    
     func textChanged(text: String, cellType: Enum) {
         
-        switch cellType {
-        case .login:
-            DataSourceRegistration.arrayTextFieldElements[0] = text
-        case .email:
-            DataSourceRegistration.arrayTextFieldElements[1] = text
-        case .password:
-            DataSourceRegistration.arrayTextFieldElements[2] = text
-        case .repeatPassword:
-            DataSourceRegistration.arrayTextFieldElements[3] = text
+        if flag == 1 {
+            switch cellType {
+            case .login:
+                login = text
+            case .email:
+                emailUp = text
+            case .password:
+                passwordUp = text
+            case .repeatPassword:
+                repeatPassword = text
+            }
+        } else {
+            switch cellType {
+            case .email:
+                emailIn = text
+            case .password:
+                passwordIn = text
+            default:
+                break
+            }
         }
+        
     }
 }

@@ -28,9 +28,36 @@ extension DataSourceSignin: UITableViewDataSource {
 }
 
 extension DataSourceSignin: TableViewInputCellDelegate {
-    func textChanged(text: String, cellType: Enum) {
-        //print(text, cellType)
+    
+    func textFieldColor() {
+        
     }
+    
+    func textChanged(text: String, cellType: Enum) {
+        
+        if flag == 1 {
+            switch cellType {
+            case .login:
+                login = text
+            case .email:
+                emailUp = text
+            case .password:
+                passwordUp = text
+            case .repeatPassword:
+                repeatPassword = text
+            }
+        } else {
+            switch cellType {
+            case .email:
+                emailIn = text
+            case .password:
+                passwordIn = text
+            default:
+                break
+            }
+        }
+    }
+    
 }
 
 

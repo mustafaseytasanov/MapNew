@@ -9,6 +9,8 @@ import UIKit
 
 protocol AuthTableFooterDelegate: AnyObject {
     func buttonHandleUp(param: UIButton)
+    func buttonHandleIn(param: UIButton)
+    func valueSwitchChanged(param: UISwitch)
 }
 
 
@@ -84,18 +86,12 @@ class AuthTableFooter: UIView {
     }
     
     @objc func buttonHandleIn(param: UIButton) {
-        if allElementsTwo[0] == true && allElementsTwo[1] == true {
-            Navigation.nav.viewControllers = [MainViewController()]
-            LoginManager.isLoggedIn = true
-        }
+        
+        delegate?.buttonHandleIn(param: param)
     }
     
     @objc func handleSwitchUp(param: UISwitch) {
-        if param.isOn {
-            allElements[4] = true
-        } else {
-            allElements[4] = false
-        }
+        delegate?.valueSwitchChanged(param: param)
     }
     
 }

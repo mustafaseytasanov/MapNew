@@ -58,7 +58,7 @@ class MapViewController: UIViewController {
     
     
     @objc func handleClick() {
-        Navigation.nav.viewControllers = [DescriptionViewController()]
+        //AppDelegate.nav.viewControllers = [DescriptionViewController()]
     }
 }
 
@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        Navigation.nav.pushViewController(DescriptionViewController(), animated: false)
+        //AppDelegate.nav.pushViewController(DescriptionViewController(), animated: false)
     }
     
 }

@@ -12,6 +12,7 @@
 		840339B7279EC30900592615 /* TableViewInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA5A7A279EA93E00157AFA /* TableViewInputCell.swift */; };
 		8444661727BBD36E00DC79CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8444661927BBD36E00DC79CB /* Localizable.strings */; };
 		844D550827B681920014E66C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D550727B681920014E66C /* LoginViewModel.swift */; };
+		844E005827BE6902007DFD95 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E005727BE6902007DFD95 /* TextData.swift */; };
 		844E6A2C279FD1DE0039B5CF /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E6A2B279FD1DE0039B5CF /* Enum.swift */; };
 		844ED1B127AD23D80050C874 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED1B027AD23D80050C874 /* DescriptionViewController.swift */; };
 		844F1EA027AD55D200B8FC74 /* TableViewCellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F1E9E27AD55D200B8FC74 /* TableViewCellOne.swift */; };
@@ -25,7 +26,6 @@
 		8456B44F27BA64260040EB32 /* AuthTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456B44E27BA64260040EB32 /* AuthTableFooter.swift */; };
 		846C47A227ABF69200E7784F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C47A127ABF69200E7784F /* MapViewController.swift */; };
 		8478CEF727A3DA2800BB4731 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478CEF627A3DA2800BB4731 /* MainViewController.swift */; };
-		8478CEFB27A3EDAE00BB4731 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478CEFA27A3EDAE00BB4731 /* Navigation.swift */; };
 		8483090427B533B4001DFB82 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483090327B533B4001DFB82 /* LoginManager.swift */; };
 		84AA5A6E279E9B9700157AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AA5A6D279E9B9700157AFA /* Assets.xcassets */; };
 		84AA5A71279E9B9700157AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AA5A6F279E9B9700157AFA /* LaunchScreen.storyboard */; };
@@ -36,6 +36,7 @@
 		8444661827BBD36E00DC79CB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8444661B27BBD3CF00DC79CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		844D550727B681920014E66C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		844E005727BE6902007DFD95 /* TextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		844E6A2B279FD1DE0039B5CF /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		844ED1B027AD23D80050C874 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		844F1E9E27AD55D200B8FC74 /* TableViewCellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOne.swift; sourceTree = "<group>"; };
@@ -49,7 +50,6 @@
 		8456B44E27BA64260040EB32 /* AuthTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTableFooter.swift; sourceTree = "<group>"; };
 		846C47A127ABF69200E7784F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8478CEF627A3DA2800BB4731 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		8478CEFA27A3EDAE00BB4731 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8483090327B533B4001DFB82 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		84AA5A61279E9B9500157AFA /* Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Map.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AA5A64279E9B9500157AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +100,7 @@
 			children = (
 				844E6A2B279FD1DE0039B5CF /* Enum.swift */,
 				8483090327B533B4001DFB82 /* LoginManager.swift */,
+				844E005727BE6902007DFD95 /* TextData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				84AA5A64279E9B9500157AFA /* AppDelegate.swift */,
-				8478CEFA27A3EDAE00BB4731 /* Navigation.swift */,
 				84AA5A6F279E9B9700157AFA /* LaunchScreen.storyboard */,
 				8444661927BBD36E00DC79CB /* Localizable.strings */,
 				84AA5A6D279E9B9700157AFA /* Assets.xcassets */,
@@ -248,11 +248,11 @@
 			files = (
 				8456B44F27BA64260040EB32 /* AuthTableFooter.swift in Sources */,
 				8483090427B533B4001DFB82 /* LoginManager.swift in Sources */,
+				844E005827BE6902007DFD95 /* TextData.swift in Sources */,
 				844ED1B127AD23D80050C874 /* DescriptionViewController.swift in Sources */,
 				840339B7279EC30900592615 /* TableViewInputCell.swift in Sources */,
 				840339B6279EC30600592615 /* LoginViewController.swift in Sources */,
 				8456B44B27BA4F390040EB32 /* DataSourceSignin.swift in Sources */,
-				8478CEFB27A3EDAE00BB4731 /* Navigation.swift in Sources */,
 				844F1EA027AD55D200B8FC74 /* TableViewCellOne.swift in Sources */,
 				844D550827B681920014E66C /* LoginViewModel.swift in Sources */,
 				8456B44D27BA56990040EB32 /* AuthTableHeader.swift in Sources */,

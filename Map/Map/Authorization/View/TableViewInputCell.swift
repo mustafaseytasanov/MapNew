@@ -11,14 +11,13 @@ var login = ""
 var emailUp = ""
 var passwordUp = ""
 var repeatPassword = ""
-
 var emailIn = ""
 var passwordIn = ""
-
 
 protocol TableViewInputCellDelegate: AnyObject {
 
     func textChanged(text: String, cellType: Enum)
+    func textFieldColor()
 }
 
 class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
@@ -60,6 +59,7 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
     }
     
     override func prepareForReuse() {
+        textField.text = ""
         super.prepareForReuse()
     }
     
@@ -67,6 +67,7 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
                 
         type = title
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .allEditingEvents)
+        
         if flag == 0 {
             switch title {
             case .email:
@@ -96,26 +97,26 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
         }
     }
         
-    func colorOne(textField: UITextField, boolValue: Bool) {
+    func colorTextField(type: Enum, boolValue: Bool) {
+        /*
         if boolValue == true {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
             textField.layer.borderColor = UIColor.red.cgColor
             textField.backgroundColor = UIColor.init(red: 1, green: 0, blue: 0, alpha: 0.1)
-        }
+        }*/
+        
     }
     
 
-    // Handlers
+    // Handler
     @objc func textChanged(_ textField: UITextField) {
         let text = textField.text ?? ""
         guard let name = type else {
             return
         }
         delegate?.textChanged(text: text, cellType: name)
-        
-        //let loginValue = LoginHelper.isValidLogin(login)
     }
     
     
