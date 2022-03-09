@@ -18,21 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // temp
+        LoginManager.isLoggedIn = true
         
-        var vc: UIViewController
+        //var router: BaseRouter
+        
+        var startVC: UIViewController
         if LoginManager.isLoggedIn == false {
-            vc = LoginViewController(viewModel: LoginViewModel())
+            //router = BaseRouter(sourceViewController: LoginViewController(viewModel: LoginViewModel()))
+            startVC = LoginViewController(viewModel: LoginViewModel())
+            
         } else {
-            vc = MainViewController()
+            //router = BaseRouter(sourceViewController: MainViewController())
+            startVC = DescriptionViewController(viewModel: DemoViewModel())
         }
-
         
-        AppDelegate.nav = UINavigationController.init(rootViewController: vc)
+        AppDelegate.nav = UINavigationController.init(rootViewController: startVC)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = AppDelegate.nav
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
-
 
         return true
         

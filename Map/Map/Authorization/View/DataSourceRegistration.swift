@@ -7,8 +7,15 @@
 
 import UIKit
 
+
+protocol DataSourceRegistrationDelegate: AnyObject {
+    func moveToController(text: String, type: Enum)
+    func getArray() -> (array: [Bool], signUpData: [String])
+}
+
 class DataSourceRegistration: NSObject {
     let object = LoginViewModel()
+    weak var delegate: DataSourceRegistrationDelegate?
 }
 
 extension DataSourceRegistration: UITableViewDataSource {
@@ -20,43 +27,22 @@ extension DataSourceRegistration: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: TableViewInputCell = tableView.dequeueReusableCell(withIdentifier: "TableViewInputCell") as! TableViewInputCell
-        
         cell.configure(with: object.elements[indexPath.row])
         cell.delegate = self
         return cell
     }
 }
 
-
 extension DataSourceRegistration: TableViewInputCellDelegate {
-    
-    func textFieldColor() {
-        
+
+    func textChange(type: Enum, text: String) {
+        delegate?.moveToController(text: text, type: type)
     }
     
-    func textChanged(text: String, cellType: Enum) {
-        
-        if flag == 1 {
-            switch cellType {
-            case .login:
-                login = text
-            case .email:
-                emailUp = text
-            case .password:
-                passwordUp = text
-            case .repeatPassword:
-                repeatPassword = text
-            }
-        } else {
-            switch cellType {
-            case .email:
-                emailIn = text
-            case .password:
-                passwordIn = text
-            default:
-                break
-            }
+    func getBoolArray() -> (array: [Bool], signUpData: [String]) {
+        if let callFunction = delegate?.getArray() {
+            return callFunction
         }
-        
+        return ([], [])
     }
 }

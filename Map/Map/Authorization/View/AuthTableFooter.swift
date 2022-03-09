@@ -18,12 +18,11 @@ class AuthTableFooter: UIView {
         
     weak var delegate: AuthTableFooterDelegate?
     
-    
     var label: UILabel = {
         let labelText = UILabel()
         labelText.frame = CGRect(x: 16, y: 15, width: 250, height: 20)
         labelText.font = UIFont.systemFont(ofSize: 22)
-        labelText.text = "Согласен с правилами"
+        labelText.text = "Согласен с правилами".localized
         return labelText
     }()
     
@@ -44,7 +43,7 @@ class AuthTableFooter: UIView {
                               height: 30)
         button.backgroundColor = UIColor.white
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Зарегистрироваться", for: .normal)
+        button.setTitle("Зарегистрироваться".localized, for: .normal)
         return button
     }()
     
@@ -56,7 +55,7 @@ class AuthTableFooter: UIView {
                               height: 30)
         button.backgroundColor = UIColor.white
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Войти".localized, for: .normal)
         return button
     }()
     
@@ -80,13 +79,10 @@ class AuthTableFooter: UIView {
 
     
     @objc func buttonHandleUp(param: UIButton) {
-        
         delegate?.buttonHandleUp(param: param)
-        
     }
     
     @objc func buttonHandleIn(param: UIButton) {
-        
         delegate?.buttonHandleIn(param: param)
     }
     

@@ -7,24 +7,17 @@
 
 import UIKit
 
-var login = ""
-var emailUp = ""
-var passwordUp = ""
-var repeatPassword = ""
-var emailIn = ""
-var passwordIn = ""
 
 protocol TableViewInputCellDelegate: AnyObject {
-
-    func textChanged(text: String, cellType: Enum)
-    func textFieldColor()
+    func textChange(type: Enum, text: String)
+    func getBoolArray() -> (array: [Bool], signUpData: [String])
 }
 
-class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
-
+class TableViewInputCell: UITableViewCell  {
+    
     var type: Enum?
     weak var delegate: TableViewInputCellDelegate?
-        
+                
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -35,11 +28,11 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
     }
     
     let textField: UITextField = {
-        let tf = UITextField()
-        tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        return tf
+        let textFieldValue = UITextField()
+        textFieldValue.borderStyle = .roundedRect
+        textFieldValue.layer.borderWidth = 1
+        textFieldValue.layer.borderColor = UIColor.lightGray.cgColor
+        return textFieldValue
     }()
     
     
@@ -67,14 +60,14 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
                 
         type = title
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .allEditingEvents)
-        
+        validationResult()
         if flag == 0 {
             switch title {
             case .email:
-                textField.placeholder = "E-mail"
+                textField.placeholder = "E-mail".localized
                 textField.isSecureTextEntry = false
             case .password:
-                textField.placeholder = "Пароль"
+                textField.placeholder = "Пароль".localized
                 textField.isSecureTextEntry = true
             default:
                 break
@@ -82,43 +75,57 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
         } else {
             switch title {
             case .login:
-                textField.placeholder = "Логин"
+                textField.placeholder = "Логин".localized
                 textField.isSecureTextEntry = false
             case .email:
-                textField.placeholder = "E-mail"
+                textField.placeholder = "E-mail".localized
                 textField.isSecureTextEntry = false
             case .password:
-                textField.placeholder = "Пароль"
+                textField.placeholder = "Пароль".localized
                 textField.isSecureTextEntry = true
             case .repeatPassword:
-                textField.placeholder = "Повторите пароль"
+                textField.placeholder = "Повторите пароль".localized
                 textField.isSecureTextEntry = true
             }
         }
     }
-        
-    func colorTextField(type: Enum, boolValue: Bool) {
-        /*
+    
+    // Result of validation
+    func validationResult() {
+        if flag == 1 {
+            if let resultOne = delegate?.getBoolArray().array {
+                if let name = type {
+                    colorTextField(boolValue: resultOne[name.rawValue])
+                }
+            }
+            if let resultTwo = delegate?.getBoolArray().signUpData {
+                if let name = type {
+                    textField.text = resultTwo[name.rawValue]
+                }
+            }
+        }
+    }
+    
+    // Color of textField
+    func colorTextField(boolValue: Bool) {
         if boolValue == true {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
             textField.layer.borderColor = UIColor.red.cgColor
             textField.backgroundColor = UIColor.init(red: 1, green: 0, blue: 0, alpha: 0.1)
-        }*/
-        
+        }
     }
     
-
     // Handler
     @objc func textChanged(_ textField: UITextField) {
+        
         let text = textField.text ?? ""
         guard let name = type else {
             return
         }
-        delegate?.textChanged(text: text, cellType: name)
+        delegate?.textChange(type: name, text: text)        
     }
-    
     
     // UI
     func setupUI() {
@@ -128,6 +135,7 @@ class TableViewInputCell: UITableViewCell, UITextFieldDelegate  {
         contentView.addSubview(colorView)
         colorView.addSubview(textField)
         NSLayoutConstraint.activate([
+            
             colorView.heightAnchor.constraint(equalToConstant: 40),
             colorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             colorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),

@@ -15,14 +15,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Основной экран"
+        self.title = "Основной экран".localized
         setButton()
         openMap()
     }
     
     func setButton() {
         button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 40))
-        button.setTitle("Выйти", for: .normal)
+        button.setTitle("Выйти".localized, for: .normal)
         button.backgroundColor = UIColor.red
         button.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
         view.addSubview(button)
@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
     
     func openMap() {
         button2 = UIButton(frame: CGRect(x: 100, y: 250, width: 100, height: 40))
-        button2.setTitle("Карта", for: .normal)
+        button2.setTitle("Карта".localized, for: .normal)
         button2.backgroundColor = UIColor.green
         button2.addTarget(self, action: #selector(handleButton2), for: .touchUpInside)
         view.addSubview(button2)

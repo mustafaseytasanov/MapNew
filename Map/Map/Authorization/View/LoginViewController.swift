@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import SnapKit
 
 var flag = 1
 
-class LoginViewController: UIViewController {
-    
+class LoginViewController: UIViewController  {
+            
     var tableView = UITableView()
     var dataSource = DataSourceRegistration()
     var dataSourceTwo = DataSourceSignin()
@@ -21,17 +22,20 @@ class LoginViewController: UIViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        //self.hidesBottomBarWhenPushed = true
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //viewModel.reload()
         setupTableView()
         bindViewModel()
     }
+    
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.register(TableViewInputCell.self, forCellReuseIdentifier: "TableViewInputCell")
@@ -43,13 +47,19 @@ class LoginViewController: UIViewController {
         tableView.tableFooterView = authTableFooter.myFooterOneView()
         authTableHeader.delegate = self
         authTableFooter.delegate = self
+        dataSource.delegate = self
         self.view.addSubview(self.tableView)
+        //LayoutConstraintItem().superview?.addSubview(tableView)
+        
+        
     }
     
     private func bindViewModel() {
-    
+        
+        viewModel.login.bind({ (helloText) in
+            DispatchQueue.main.async {}
+        })
     }
-    
 }
 
 
@@ -72,7 +82,10 @@ extension LoginViewController: HeaderDelegate {
 extension LoginViewController: AuthTableFooterDelegate {
     
     func buttonHandleUp(param: UIButton) {
-        viewModel.checkingText()
+        let validationValue = viewModel.checkingText()
+        if validationValue == false {
+            tableView.reloadData()
+        }
     }
     
     func buttonHandleIn(param: UIButton) {
@@ -85,5 +98,16 @@ extension LoginViewController: AuthTableFooterDelegate {
         } else {
             viewModel.valueSwitch(false)
         }
+    }
+}
+
+extension LoginViewController: DataSourceRegistrationDelegate {
+    
+    func moveToController(text: String, type: Enum) {
+        viewModel.updateValues(text: text, cellType: type)
+    }
+    
+    func getArray() -> (array: [Bool], signUpData: [String]) {
+        return viewModel.getBoolArray()
     }
 }

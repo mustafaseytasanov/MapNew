@@ -52,7 +52,7 @@ class MapViewController: UIViewController {
     func annotations(location: CLLocationCoordinate2D, index: Int) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Place \(index+1)"
+        annotation.title = "Place \(index+1)".localized
         map.addAnnotation(annotation)
     }
     
