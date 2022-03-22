@@ -24,12 +24,15 @@ final class DemoViewModel: DemoViewModelProtocol {
 
     func loadMore() {
         currentPage += 1
+        //nearby()
         fetchUsers(page: currentPage)
+        
     }
     
     func reload() {
         currentPage = 1
         fetchUsers(page: currentPage)
+        //nearby()
     }
     
     private func fetchUsers(page: Int) {
@@ -44,4 +47,19 @@ final class DemoViewModel: DemoViewModelProtocol {
                 }
             }
     }
+    
+    // does not support pagination
+    /*
+    private func nearby() {
+        provider.request(.nearby) { [weak self] result in
+            switch result {
+            case .success(let response):
+                let mapped = try? response.map(UsersResponse.self)
+                self?.dataStorage = mapped?.data.map { UserDTO(from: $0) } ?? []
+                self?.updator()
+            case .failure(let error):
+                print("Something went wrong: \(error)")
+            }
+        }
+    }*/
 }

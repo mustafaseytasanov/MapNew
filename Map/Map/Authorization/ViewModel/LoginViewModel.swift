@@ -69,7 +69,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         if allElements[0] == true && allElements[1] == true &&
                 allElements[2] == true && allElements[3] == true &&
                 allElements[4] == true {
-            AppDelegate.nav.viewControllers = [MainViewController()]
+            AppDelegate.nav.viewControllers = [MapViewController(viewModel: URLExample())]
             LoginManager.login = signUpData.login
             LoginManager.email = signUpData.email
             LoginManager.password = signUpData.password
@@ -95,7 +95,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         allElementsTwo[1] = signInData.password == LoginManager.password
         
         if allElementsTwo[0] == true && allElementsTwo[1] == true {
-            AppDelegate.nav.viewControllers = [MainViewController()]
+            AppDelegate.nav.viewControllers = [MapViewController(viewModel: URLExample())]
             LoginManager.isLoggedIn = true
             signInData.email = ""
             signInData.password = ""

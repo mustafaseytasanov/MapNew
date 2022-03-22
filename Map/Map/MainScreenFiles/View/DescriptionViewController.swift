@@ -12,28 +12,13 @@ class DescriptionViewController: UIViewController {
     
     var tableView = UITableView()
 
-    var viewModel: DemoViewModel
-    init(viewModel: DemoViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        //self.hidesBottomBarWhenPushed = true
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupTableView()
-        setupNavigationBar()
-        viewModel.reload()
         
+        setupTableView()
+        setupNavigationBar()        
     }
     
-
     private func setupTableView() {
         tableView = UITableView(frame: CGRect(
             x: 0, y: -64, width: UIScreen.main.bounds.width,
@@ -42,6 +27,7 @@ class DescriptionViewController: UIViewController {
         tableView.register(CellTwo.self, forCellReuseIdentifier: "CellTwo")
         tableView.register(CellThree.self, forCellReuseIdentifier: "CellThree")
         tableView.register(CellFour.self, forCellReuseIdentifier: "CellFour")
+        tableView.register(CellFive.self, forCellReuseIdentifier: "CellFive")
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -55,7 +41,9 @@ class DescriptionViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        let item1 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
+        let item1 = UIBarButtonItem(barButtonSystemItem: .action,
+                                    target: self,
+                                    action: nil)
         let item2 = UIBarButtonItem(
             image: UIImage(named: "option-2"),
             style: .done,
@@ -66,18 +54,24 @@ class DescriptionViewController: UIViewController {
             image: UIImage(named: "left-3"),
             style: .done,
             target: self,
-            action: nil)
+            action: #selector(handleButtonBack))
     }
+    
+    @objc func handleButtonBack() {
+        AppDelegate.nav.viewControllers = [MapViewController(viewModel: URLExample())]
+    }
+    
 }
 
 
 extension DescriptionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
         case 0:
@@ -89,8 +83,11 @@ extension DescriptionViewController: UITableViewDataSource {
         case 2:
             let cell: CellThree = tableView.dequeueReusableCell(withIdentifier: "CellThree") as! CellThree
             return cell
-        default:
+        case 3:
             let cell: CellFour = tableView.dequeueReusableCell(withIdentifier: "CellFour") as! CellFour
+            return cell
+        default:
+            let cell: CellFive = tableView.dequeueReusableCell(withIdentifier: "CellFive") as! CellFive
             return cell
         }
     }

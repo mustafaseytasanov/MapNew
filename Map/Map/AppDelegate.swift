@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             //router = BaseRouter(sourceViewController: MainViewController())
-            startVC = DescriptionViewController(viewModel: DemoViewModel())
+            startVC = MapViewController(viewModel: URLExample())
         }
         
         AppDelegate.nav = UINavigationController.init(rootViewController: startVC)

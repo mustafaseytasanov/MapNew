@@ -108,16 +108,22 @@ class CellFour: UITableViewCell {
     
     let mapView: MKMapView = {
         let view = MKMapView()
-        let location = CLLocationCoordinate2DMake(55.757900, 37.611106)
-        let span = MKCoordinateSpan(latitudeDelta: 0.0002, longitudeDelta: 0.0002)
+        let location = CLLocationCoordinate2DMake(arrayLatitude[currentTag],
+                                                  arrayLongitude[currentTag])
+        let span = MKCoordinateSpan(latitudeDelta: 0.002,
+                                    longitudeDelta: 0.002)
         let region = MKCoordinateRegion(center: location, span: span)
         view.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        view.addAnnotation(annotation)
         return view
     }()
     
     let labelLocation: UILabel = {
         let label = UILabel()
-        label.text = "Москва".localized
+        //label.text = "Москва".localized
+        label.text = arrayAddresses[currentTag].localized
         label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
         return label
@@ -249,8 +255,8 @@ class CellFour: UITableViewCell {
         }
         colorView.addSubview(labelLocation)
         labelLocation.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(12)
-            make.top.equalTo(colorView).offset(269)
+            make.height.equalTo(16)
+            make.top.equalTo(colorView).offset(267)
             make.left.equalTo(colorView).offset(50)
         }
     }
