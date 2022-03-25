@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static var nav = UINavigationController()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions
+                     launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // temp
         LoginManager.isLoggedIn = true
@@ -40,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         return true
-        
-       
         
     }
 

@@ -43,7 +43,7 @@ class CellTwo: UITableViewCell {
     
     let label1: UILabel = {
         let label = UILabel()
-        label.text = "Сохранить".localized
+        label.text = "Save".localized
         label.textColor = .blue
         label.font = UIFont(name:"HelveticaNeue-Bold", size: 14.0)
         return label
@@ -65,7 +65,7 @@ class CellTwo: UITableViewCell {
     
     let label2: UILabel = {
         let label = UILabel()
-        label.text = "Оценить".localized
+        label.text = "Like".localized
         label.textColor = .blue
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 14.0)
         return label

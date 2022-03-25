@@ -12,7 +12,6 @@ import SwiftyJSON
 import MapKit
 
 
-
 class CellOne: UITableViewCell {
 
     override func awakeFromNib() {
@@ -49,15 +48,11 @@ class CellOne: UITableViewCell {
         let page = UIPageControl()
         page.numberOfPages = imageViewDataArray.count
         page.currentPage = 0
-        //page.tintColor = .red
         page.currentPageIndicatorTintColor = .white
         return page
-        
     }()
     
-    
-    
-    
+
     let imageViewArr: [UIImageView] = {
         
         var imageViewArray = [UIImageView]()
@@ -83,7 +78,7 @@ class CellOne: UITableViewCell {
     
     let label2: UILabel = {
         var label = UILabel()
-        label.text = "Место в ".localized + arrayLocality[currentTag]
+        label.text = "Place in ".localized + arrayLocality[currentTag]
         label.textColor = .gray
         label.font = .systemFont(ofSize: 16)
         return label

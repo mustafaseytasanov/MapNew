@@ -19,7 +19,7 @@ class AuthTableHeader: UIView {
     
     var segmentControl: UISegmentedControl = {
         var segment = UISegmentedControl()
-        let arrayOptions = ["Вход".localized, "Регистрация".localized]
+        let arrayOptions = ["Sign in".localized, "Sign up".localized]
         segment = UISegmentedControl(items: arrayOptions)
         segment.selectedSegmentTintColor = UIColor.init(red: 0.5, green: 0.8, blue: 1, alpha: 1)
         segment.backgroundColor = UIColor.white

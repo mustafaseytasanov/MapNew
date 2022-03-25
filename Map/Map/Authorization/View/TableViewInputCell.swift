@@ -67,7 +67,7 @@ class TableViewInputCell: UITableViewCell  {
                 textField.placeholder = "E-mail".localized
                 textField.isSecureTextEntry = false
             case .password:
-                textField.placeholder = "Пароль".localized
+                textField.placeholder = "Password".localized
                 textField.isSecureTextEntry = true
             default:
                 break
@@ -75,16 +75,16 @@ class TableViewInputCell: UITableViewCell  {
         } else {
             switch title {
             case .login:
-                textField.placeholder = "Логин".localized
+                textField.placeholder = "Login".localized
                 textField.isSecureTextEntry = false
             case .email:
                 textField.placeholder = "E-mail".localized
                 textField.isSecureTextEntry = false
             case .password:
-                textField.placeholder = "Пароль".localized
+                textField.placeholder = "Password".localized
                 textField.isSecureTextEntry = true
             case .repeatPassword:
-                textField.placeholder = "Повторите пароль".localized
+                textField.placeholder = "Repeat password".localized
                 textField.isSecureTextEntry = true
             }
         }

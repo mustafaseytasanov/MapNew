@@ -31,7 +31,7 @@ class CellFive: UITableViewCell {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitleColor(.red, for: .normal)
-        button.setTitle("Выйти", for: .normal)
+        button.setTitle("Log out".localized, for: .normal)
         button.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
         return button
     }()

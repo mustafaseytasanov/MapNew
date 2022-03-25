@@ -22,7 +22,7 @@ class AuthTableFooter: UIView {
         let labelText = UILabel()
         labelText.frame = CGRect(x: 16, y: 15, width: 250, height: 20)
         labelText.font = UIFont.systemFont(ofSize: 22)
-        labelText.text = "Согласен с правилами".localized
+        labelText.text = "Agree with the rules".localized
         return labelText
     }()
     
@@ -43,7 +43,7 @@ class AuthTableFooter: UIView {
                               height: 30)
         button.backgroundColor = UIColor.white
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Зарегистрироваться".localized, for: .normal)
+        button.setTitle("Sign up".localized, for: .normal)
         return button
     }()
     
@@ -55,7 +55,7 @@ class AuthTableFooter: UIView {
                               height: 30)
         button.backgroundColor = UIColor.white
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Войти".localized, for: .normal)
+        button.setTitle("Sign in".localized, for: .normal)
         return button
     }()
     

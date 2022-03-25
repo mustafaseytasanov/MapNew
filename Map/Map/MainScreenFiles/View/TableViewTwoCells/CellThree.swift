@@ -23,14 +23,11 @@ class CellThree: UITableViewCell {
     
     let labelText: UILabel = {
         let label = UILabel()
-        label.text = "Тебе довелось побывать в этом месте".localized
+        label.text = "Have you been to this place".localized
         label.textColor = .gray
         label.font = .systemFont(ofSize: 13)
-
         return label
     }()
-    
-   
     
     let buttonHexagon: UIButton = {
         let button = UIButton()

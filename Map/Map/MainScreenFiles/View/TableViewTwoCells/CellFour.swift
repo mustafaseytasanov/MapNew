@@ -22,7 +22,7 @@ class CellFour: UITableViewCell {
     
     let labelText: UILabel = {
         let label = UILabel()
-        label.text = "Информация".localized
+        label.text = "Information".localized
         label.textColor = .black
         label.font = UIFont(name:"HelveticaNeue-Bold", size: 15)
         return label
@@ -64,7 +64,7 @@ class CellFour: UITableViewCell {
     
     let buttonAddTime: UIButton = {
         let button = UIButton()
-        button.setTitle("Вероятно открыто".localized, for: .normal)
+        button.setTitle("Probably open".localized, for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
         button.titleLabel?.font = UIFont(name:"HelveticaNeue", size: 16.0)
         return button
@@ -72,7 +72,7 @@ class CellFour: UITableViewCell {
     
     let buttonAddPhoneNumber: UIButton = {
         let button = UIButton()
-        button.setTitle("Добавить телефон".localized, for: .normal)
+        button.setTitle("Add Phone".localized, for: .normal)
         button.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         button.setTitleColor(.blue, for: .normal)
         return button
@@ -80,7 +80,7 @@ class CellFour: UITableViewCell {
     
     let buttonAddWebsite: UIButton = {
         let button = UIButton()
-        button.setTitle("Добавить веб-сайт".localized, for: .normal)
+        button.setTitle("Add website".localized, for: .normal)
         button.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         button.setTitleColor(.blue, for: .normal)
         return button
@@ -122,8 +122,7 @@ class CellFour: UITableViewCell {
     
     let labelLocation: UILabel = {
         let label = UILabel()
-        //label.text = "Москва".localized
-        label.text = arrayAddresses[currentTag].localized
+        label.text = arrayAddresses[currentTag]
         label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
         return label

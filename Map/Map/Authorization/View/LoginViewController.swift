@@ -49,9 +49,6 @@ class LoginViewController: UIViewController  {
         authTableFooter.delegate = self
         dataSource.delegate = self
         self.view.addSubview(self.tableView)
-        //LayoutConstraintItem().superview?.addSubview(tableView)
-        
-        
     }
     
     private func bindViewModel() {
