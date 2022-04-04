@@ -37,7 +37,6 @@ class CellOne: UITableViewCell {
     
     var photoScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        //scrollView.isScrollEnabled = true
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = true
         scrollView.isUserInteractionEnabled = true
@@ -56,7 +55,6 @@ class CellOne: UITableViewCell {
     let imageViewArr: [UIImageView] = {
         
         var imageViewArray = [UIImageView]()
-                
         for i in 0..<imageViewDataArray.count {
             var imageView = UIImageView()
             imageView.image = UIImage(data: imageViewDataArray[i])
@@ -69,7 +67,6 @@ class CellOne: UITableViewCell {
     
     let label1: UILabel = {
         let label = UILabel()
-        label.text = arrayTitles[currentTag]
         label.textColor = .black
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 21)
         return label
@@ -78,7 +75,6 @@ class CellOne: UITableViewCell {
     
     let label2: UILabel = {
         var label = UILabel()
-        label.text = "Place in ".localized + arrayLocality[currentTag]
         label.textColor = .gray
         label.font = .systemFont(ofSize: 16)
         return label
@@ -93,8 +89,6 @@ class CellOne: UITableViewCell {
         return button
     }()
    
-
- 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -108,8 +102,10 @@ class CellOne: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with title: Enum) {
-                        
+    func configure(with model: [MainData]) {
+        print(model.count)
+        label1.text = model[currentTag].name
+        label2.text = "Place in ".localized + model[currentTag].locality
     }
     
     
@@ -156,7 +152,7 @@ class CellOne: UITableViewCell {
             photoScrollView.addSubview(imageView)
             imageView.snp.makeConstraints { (make) -> Void in
                 make.size.equalTo(CGSize(width: UIScreen.main.bounds.width,
-                                         height: UIScreen.main.bounds.width * (photosHeight[i]/photosWidth[i])))
+                                         height: UIScreen.main.bounds.width * 0.75))
                 make.top.equalTo(photoScrollView).offset(0)
                 make.left.equalTo(photoScrollView).offset(xPosition)
             }

@@ -8,16 +8,6 @@
 import UIKit
 import MapKit
 
-
-var arrayLatitude = [Double]()
-var arrayLongitude = [Double]()
-var arrayTitles = [String]()
-var arrayLocality = [String]()
-var arrayAddresses  = [String]()
-var arrayFsq = [String]()
-var photosWidth = [Double]()
-var photosHeight = [Double]()
-
 var currentTag: Int!
 
 class CustomPointAnnotation: MKPointAnnotation {
@@ -25,9 +15,8 @@ class CustomPointAnnotation: MKPointAnnotation {
 }
 
 class MapViewController: UIViewController {
-
+    
     var map = MKMapView()
-
     var viewModel: URLExample
     init(viewModel: URLExample) {
         self.viewModel = viewModel
@@ -38,26 +27,15 @@ class MapViewController: UIViewController {
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel.requestAndEncodingRequestOne()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.viewModel.decodingRequestOne()
-            for element in self.viewModel.array {
-                arrayLatitude.append(element.latitude)
-                arrayLongitude.append(element.longitude)
-                arrayTitles.append(element.name)
-                arrayLocality.append(element.locality)
-                arrayAddresses.append(element.address)
-                arrayFsq.append(element.fsqId)
-            }
+        self.viewModel.requestOne()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.setupMap()
         }
 
     }
-    
     
     func setupMap() {
         map = MKMapView(frame: CGRect(x: 0,
@@ -72,14 +50,14 @@ class MapViewController: UIViewController {
         locations()
         map.delegate = self
         view.addSubview(map)
+
     }
 
     func locations() {
-        
         var locations = [CLLocationCoordinate2D]()
-        for i in 0..<arrayLatitude.count {
-            locations.append(CLLocationCoordinate2DMake(arrayLatitude[i],
-                                                        arrayLongitude[i]))
+        for i in 0..<URLExample.dataStorage.count {
+            locations.append(CLLocationCoordinate2DMake(URLExample.dataStorage[i].latitude,
+                                                        URLExample.dataStorage[i].longitude))
             annotations(location: locations[i], index: i)
         }
     }
@@ -87,7 +65,7 @@ class MapViewController: UIViewController {
     func annotations(location: CLLocationCoordinate2D, index: Int) {
         let annotation = CustomPointAnnotation()
         annotation.coordinate = location
-        annotation.title = arrayTitles[index]
+        annotation.title = URLExample.dataStorage[index].name
         annotation.tag = index
         map.addAnnotation(annotation)
     }
@@ -106,28 +84,21 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = view.annotation as? CustomPointAnnotation {
             currentTag = annotation.tag!
         }
-        
-        viewModel.requestAndEncodingRequestTwo()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { // Change `3.0` to the desired number of seconds.
-           // Code you want to be delayed
-            self.viewModel.decodingRequestTwo()
-            let neededArray = arrayPhotos
+        viewModel.requestTwo()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             var path: String = ""
-            for element in neededArray {
+            for element in URLExample.dataStorageTwo {
                 let str1 = element.prefix
                 let str2 = element.suffix
                 path = str1 + "720x540" + str2
                 self.viewModel.setImageRequestThree(from: path)
-                photosWidth.append(element.width)
-                photosHeight.append(element.height)
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) { // Change `5.0` to the desired number of seconds.
-           // Code you want to be delayed
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
             AppDelegate.nav.pushViewController(DescriptionViewController(), animated: false)
-
         }
     }
 }

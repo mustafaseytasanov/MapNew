@@ -11,13 +11,15 @@ import SnapKit
 var flag = 1
 
 class LoginViewController: UIViewController  {
-            
+                
     var tableView = UITableView()
     var dataSource = DataSourceRegistration()
     var dataSourceTwo = DataSourceSignin()
     var authTableHeader = AuthTableHeader()
     var authTableFooter = AuthTableFooter()
     
+    let router: Router! = nil
+
     var viewModel: LoginViewModel
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel

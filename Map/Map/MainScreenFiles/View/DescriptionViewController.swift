@@ -11,12 +11,13 @@ import SnapKit
 class DescriptionViewController: UIViewController {
     
     var tableView = UITableView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
-        setupNavigationBar()        
+        setupNavigationBar()
+        
     }
     
     private func setupTableView() {
@@ -76,6 +77,8 @@ extension DescriptionViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell: CellOne = tableView.dequeueReusableCell(withIdentifier: "CellOne") as! CellOne
+            let model = URLExample.dataStorage
+            cell.configure(with: model)
             return cell
         case 1:
             let cell: CellTwo = tableView.dequeueReusableCell(withIdentifier: "CellTwo") as! CellTwo
@@ -85,6 +88,8 @@ extension DescriptionViewController: UITableViewDataSource {
             return cell
         case 3:
             let cell: CellFour = tableView.dequeueReusableCell(withIdentifier: "CellFour") as! CellFour
+            let model = URLExample.dataStorage
+            cell.configure(with: model)
             return cell
         default:
             let cell: CellFive = tableView.dequeueReusableCell(withIdentifier: "CellFive") as! CellFive

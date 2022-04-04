@@ -108,21 +108,11 @@ class CellFour: UITableViewCell {
     
     let mapView: MKMapView = {
         let view = MKMapView()
-        let location = CLLocationCoordinate2DMake(arrayLatitude[currentTag],
-                                                  arrayLongitude[currentTag])
-        let span = MKCoordinateSpan(latitudeDelta: 0.002,
-                                    longitudeDelta: 0.002)
-        let region = MKCoordinateRegion(center: location, span: span)
-        view.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        view.addAnnotation(annotation)
         return view
     }()
     
     let labelLocation: UILabel = {
         let label = UILabel()
-        label.text = arrayAddresses[currentTag]
         label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
         return label
@@ -149,8 +139,17 @@ class CellFour: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with title: Enum) {
-                        
+    func configure(with model: [MainData]) {
+        labelLocation.text = model[currentTag].address
+        let location = CLLocationCoordinate2DMake(model[currentTag].latitude,
+                                                  model[currentTag].longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.002,
+                                    longitudeDelta: 0.002)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
     }
     
     // UI
