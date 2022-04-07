@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol TableViewInputCellDelegate: AnyObject {
     func textChange(type: Enum, text: String)
     func getBoolArray() -> (array: [Bool], signUpData: [String])

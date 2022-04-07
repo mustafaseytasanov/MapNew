@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DataExample: Codable {
+struct Main: Codable {
     var results: [Results]
 }
 

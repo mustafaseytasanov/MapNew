@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class DataSourceSignin: NSObject {
     let object = LoginViewModel()
 }

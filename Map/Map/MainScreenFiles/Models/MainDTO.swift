@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MainData {
+struct MainDTO {
     
     let fsqId: String
     let latitude: Double

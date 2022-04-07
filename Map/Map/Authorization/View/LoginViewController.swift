@@ -18,13 +18,10 @@ class LoginViewController: UIViewController  {
     var authTableHeader = AuthTableHeader()
     var authTableFooter = AuthTableFooter()
     
-    let router: Router! = nil
-
     var viewModel: LoginViewModel
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        //self.hidesBottomBarWhenPushed = true
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,10 +29,8 @@ class LoginViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //viewModel.reload()
+        self.navigationController?.navigationBar.barTintColor = .white
         setupTableView()
-        bindViewModel()
     }
     
     private func setupTableView() {
@@ -51,13 +46,6 @@ class LoginViewController: UIViewController  {
         authTableFooter.delegate = self
         dataSource.delegate = self
         self.view.addSubview(self.tableView)
-    }
-    
-    private func bindViewModel() {
-        
-        viewModel.login.bind({ (helloText) in
-            DispatchQueue.main.async {}
-        })
     }
 }
 

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol DataSourceRegistrationDelegate: AnyObject {
     func moveToController(text: String, type: Enum)
     func getArray() -> (array: [Bool], signUpData: [String])

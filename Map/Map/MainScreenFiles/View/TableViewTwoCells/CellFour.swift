@@ -139,7 +139,7 @@ class CellFour: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with model: [MainData]) {
+    func configure(with model: [MainDTO]) {
         labelLocation.text = model[currentTag].address
         let location = CLLocationCoordinate2DMake(model[currentTag].latitude,
                                                   model[currentTag].longitude)

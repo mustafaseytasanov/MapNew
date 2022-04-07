@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct PhotosData {
-    
+struct PhotosDTO {
+
     let prefix: String
     let suffix: String
     let width: Double
     let height: Double
     
     init(from model: Photos) {
+                
         self.prefix = model.prefix
         self.suffix = model.suffix
         self.width = model.width

@@ -7,11 +7,9 @@
 
 import UIKit
 
-
 protocol HeaderDelegate: AnyObject {
     func segmentChanged(param: UISegmentedControl)
 }
-
 
 class AuthTableHeader: UIView {
 

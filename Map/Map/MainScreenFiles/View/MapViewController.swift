@@ -9,7 +9,6 @@ import UIKit
 import MapKit
 
 var currentTag: Int!
-
 class CustomPointAnnotation: MKPointAnnotation {
     var tag: Int!
 }
@@ -17,8 +16,8 @@ class CustomPointAnnotation: MKPointAnnotation {
 class MapViewController: UIViewController {
     
     var map = MKMapView()
-    var viewModel: URLExample
-    init(viewModel: URLExample) {
+    var viewModel: MapViewModel
+    init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,15 +25,13 @@ class MapViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.requestOne()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.setupMap()
+                
+        viewModel.updator = { [weak self] in
+            self?.setupMap()
         }
-
     }
     
     func setupMap() {
@@ -50,14 +47,13 @@ class MapViewController: UIViewController {
         locations()
         map.delegate = self
         view.addSubview(map)
-
     }
 
     func locations() {
         var locations = [CLLocationCoordinate2D]()
-        for i in 0..<URLExample.dataStorage.count {
-            locations.append(CLLocationCoordinate2DMake(URLExample.dataStorage[i].latitude,
-                                                        URLExample.dataStorage[i].longitude))
+        for i in 0..<viewModel.dataStorage.count {
+            locations.append(CLLocationCoordinate2DMake(viewModel.dataStorage[i].latitude,
+                                                        viewModel.dataStorage[i].longitude))
             annotations(location: locations[i], index: i)
         }
     }
@@ -65,7 +61,7 @@ class MapViewController: UIViewController {
     func annotations(location: CLLocationCoordinate2D, index: Int) {
         let annotation = CustomPointAnnotation()
         annotation.coordinate = location
-        annotation.title = URLExample.dataStorage[index].name
+        annotation.title = viewModel.dataStorage[index].name
         annotation.tag = index
         map.addAnnotation(annotation)
     }
@@ -84,21 +80,6 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = view.annotation as? CustomPointAnnotation {
             currentTag = annotation.tag!
         }
-
-        viewModel.requestTwo()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            var path: String = ""
-            for element in URLExample.dataStorageTwo {
-                let str1 = element.prefix
-                let str2 = element.suffix
-                path = str1 + "720x540" + str2
-                self.viewModel.setImageRequestThree(from: path)
-            }
-        }
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
-            AppDelegate.nav.pushViewController(DescriptionViewController(), animated: false)
-        }
+        viewModel.didSubmitAction()
     }
 }

@@ -12,13 +12,56 @@ class DescriptionViewController: UIViewController {
     
     var tableView = UITableView()
     
+    var viewModel: DescriptionViewModel
+    init(viewModel: DescriptionViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
-        setupNavigationBar()
+        makeRequests()
+        
+        viewModel.readySetupContent = {
+            self.setupTableView()
+            self.setupNavigationBar()
+        }
         
     }
+    
+    func makeRequests() {
+        
+        viewModel.requestTwo()
+        viewModel.waiting = {
+            
+            imageViewArray = []
+            
+            var idx = 0
+            if self.viewModel.dataStorage.count > 0 {
+                let path = self.viewModel.dataStorage[idx].prefix + "original" +
+                    self.viewModel.dataStorage[idx].suffix
+                self.viewModel.requestThree(from: path)
+                idx += 1
+            }
+            
+            self.viewModel.waitingTwo = {
+                if idx <= self.viewModel.dataStorage.count-1 {
+                    let path = self.viewModel.dataStorage[idx].prefix + "original" +
+                        self.viewModel.dataStorage[idx].suffix
+                    self.viewModel.requestThree(from: path)
+                    idx += 1
+                } else {
+                    self.viewModel.readySetupContent()
+                }
+            }
+        }
+    }
+    
     
     private func setupTableView() {
         tableView = UITableView(frame: CGRect(
@@ -59,7 +102,7 @@ class DescriptionViewController: UIViewController {
     }
     
     @objc func handleButtonBack() {
-        AppDelegate.nav.viewControllers = [MapViewController(viewModel: URLExample())]
+        viewModel.toMap()
     }
     
 }
@@ -77,7 +120,7 @@ extension DescriptionViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell: CellOne = tableView.dequeueReusableCell(withIdentifier: "CellOne") as! CellOne
-            let model = URLExample.dataStorage
+            let model = viewModel.dataFromMap
             cell.configure(with: model)
             return cell
         case 1:
@@ -88,12 +131,19 @@ extension DescriptionViewController: UITableViewDataSource {
             return cell
         case 3:
             let cell: CellFour = tableView.dequeueReusableCell(withIdentifier: "CellFour") as! CellFour
-            let model = URLExample.dataStorage
+            let model = viewModel.dataFromMap
             cell.configure(with: model)
             return cell
         default:
             let cell: CellFive = tableView.dequeueReusableCell(withIdentifier: "CellFive") as! CellFive
+            cell.delegate = self
             return cell
         }
+    }
+}
+
+extension DescriptionViewController: LogOutDelegate {
+    func updateClosure() {
+        viewModel.toLogin()
     }
 }

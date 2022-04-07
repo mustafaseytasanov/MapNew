@@ -8,8 +8,14 @@
 import UIKit
 import Alamofire
 
+protocol LogOutDelegate: AnyObject {
+    func updateClosure()
+}
+
 class CellFive: UITableViewCell {
 
+    weak var delegate: LogOutDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,7 +43,7 @@ class CellFive: UITableViewCell {
     
     @objc func handleButton() {
         LoginManager.isLoggedIn = false
-        AppDelegate.nav.viewControllers = [LoginViewController(viewModel: LoginViewModel())]
+        delegate?.updateClosure()
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -68,7 +74,6 @@ class CellFive: UITableViewCell {
                                      height: 50))
             make.edges.equalTo(contentView).inset(UIEdgeInsets(
                 top: 10, left: 0, bottom: 10, right: 0))
-
         }
         colorView.addSubview(button1)
 
@@ -78,7 +83,5 @@ class CellFive: UITableViewCell {
             make.top.equalTo(colorView).offset(0)
             make.left.equalTo(colorView).offset(0)
         }
-        
-       
     }
 }

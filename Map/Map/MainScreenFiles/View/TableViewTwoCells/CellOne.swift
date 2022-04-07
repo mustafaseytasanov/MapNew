@@ -45,7 +45,6 @@ class CellOne: UITableViewCell {
     
     var pageControl: UIPageControl = {
         let page = UIPageControl()
-        page.numberOfPages = imageViewDataArray.count
         page.currentPage = 0
         page.currentPageIndicatorTintColor = .white
         return page
@@ -54,15 +53,15 @@ class CellOne: UITableViewCell {
 
     let imageViewArr: [UIImageView] = {
         
-        var imageViewArray = [UIImageView]()
-        for i in 0..<imageViewDataArray.count {
+        var imageViewArrayInternal = [UIImageView]()
+        
+        for i in 0..<imageViewArray.count {
             var imageView = UIImageView()
-            imageView.image = UIImage(data: imageViewDataArray[i])
-            //imageView.contentMode = .scaleAspectFit
-            imageViewArray.append(imageView)
+            imageView = imageViewArray[i]
+            imageViewArrayInternal.append(imageView)
         }
 
-        return imageViewArray
+        return imageViewArrayInternal
     }()
     
     let label1: UILabel = {
@@ -102,16 +101,17 @@ class CellOne: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with model: [MainData]) {
-        print(model.count)
-        label1.text = model[currentTag].name
-        label2.text = "Place in ".localized + model[currentTag].locality
-    }
-    
-    
     @objc func changePage() {
         let x = CGFloat(pageControl.currentPage) * photoScrollView.frame.size.width
         photoScrollView.setContentOffset(CGPoint(x:x, y:0), animated: true)
+    }
+    
+    func configure(with model: [MainDTO]) {
+        
+        label1.text = model[currentTag].name
+        label2.text = "Place in ".localized + model[currentTag].locality
+        pageControl.numberOfPages = imageViewArray.count
+
     }
     
     // UI
@@ -157,7 +157,6 @@ class CellOne: UITableViewCell {
                 make.left.equalTo(photoScrollView).offset(xPosition)
             }
         }
-
         colorView.addSubview(label1)
         label1.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(colorView).offset(UIScreen.main.bounds.width*0.75 + 10)
@@ -176,9 +175,4 @@ class CellOne: UITableViewCell {
         }
         
     }
-}
-
-
-extension CellOne: UIScrollViewDelegate {
-    
 }
