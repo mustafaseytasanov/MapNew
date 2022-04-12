@@ -13,16 +13,19 @@ class DescriptionCoordinator: BaseCoordinator {
     
     let navigationController: UINavigationController
     let data: [MainDTO]
-    init(navigationController: UINavigationController, data: [MainDTO]) {
+    let currentTag: Int
+    init(navigationController: UINavigationController, data: [MainDTO], currentTag: Int) {
         self.navigationController = navigationController
         self.data = data
+        self.currentTag = currentTag
     }
 
     override func start() {
         
         let viewModel = DescriptionViewModel()
         let viewController = DescriptionViewController(viewModel: viewModel)
-        viewModel.dataFromMap = self.data
+        viewModel.dataFromMapMainData = self.data
+        viewModel.dataFromMapCurrentTag = self.currentTag
         
         viewModel.toMap = { [weak self] in
             self?.navigateToFlowA()

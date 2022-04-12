@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
                                 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
         window?.backgroundColor = UIColor.white
         let appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start()

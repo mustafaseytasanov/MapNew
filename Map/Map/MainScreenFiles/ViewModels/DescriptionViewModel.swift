@@ -8,13 +8,17 @@
 import Foundation
 import UIKit
 
-var imageViewArray = [UIImageView]()
 
 protocol protocolForRequestsTwoAndThree: AnyObject {}
 
+
 class DescriptionViewModel: protocolForRequestsTwoAndThree {
     
-    var dataFromMap: [MainDTO] = []
+    var imageViewArray = [UIImageView]()
+    
+    var dataFromMapMainData: [MainDTO] = []
+    var dataFromMapCurrentTag: Int = 0
+    
     var dataStorage: [PhotosDTO] = []
     
     var waiting: () -> Void = {}
@@ -27,8 +31,8 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
     // Request Two
     func requestTwo() {
         
-        let currentFsqID = dataFromMap[currentTag].fsqId
-        
+        let currentFsqID = dataFromMapMainData[dataFromMapCurrentTag].fsqId
+
         let headers = [
           "Accept": "application/json",
           "Authorization": "fsq3KHEsAFWlULlhyqnzd9HlIJajryG97+KckowgycT7Zdw="
@@ -74,7 +78,7 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
                 let imageView = UIImageView()
                 let image = UIImage(data: data)
                 imageView.image = image
-                imageViewArray.append(imageView)
+                self?.imageViewArray.append(imageView)
                 self?.waitingTwo()
             }
         }

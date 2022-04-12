@@ -13,8 +13,7 @@
 		8444661727BBD36E00DC79CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8444661927BBD36E00DC79CB /* Localizable.strings */; };
 		844C4CAF27E205B400650E34 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C4CAE27E205B400650E34 /* Photos.swift */; };
 		844D550827B681920014E66C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D550727B681920014E66C /* LoginViewModel.swift */; };
-		844E005827BE6902007DFD95 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E005727BE6902007DFD95 /* TextData.swift */; };
-		844E6A2C279FD1DE0039B5CF /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E6A2B279FD1DE0039B5CF /* Enum.swift */; };
+		844E6A2C279FD1DE0039B5CF /* CellIndices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E6A2B279FD1DE0039B5CF /* CellIndices.swift */; };
 		844ED1B127AD23D80050C874 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED1B027AD23D80050C874 /* DescriptionViewController.swift */; };
 		84549E9B27A285A2001A49BD /* EmailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84549E9A27A285A2001A49BD /* EmailHelper.swift */; };
 		84549E9D27A285C2001A49BD /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84549E9C27A285C2001A49BD /* LoginHelper.swift */; };
@@ -23,13 +22,13 @@
 		8456B44B27BA4F390040EB32 /* DataSourceSignin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456B44A27BA4F390040EB32 /* DataSourceSignin.swift */; };
 		8456B44D27BA56990040EB32 /* AuthTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456B44C27BA56990040EB32 /* AuthTableHeader.swift */; };
 		8456B44F27BA64260040EB32 /* AuthTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456B44E27BA64260040EB32 /* AuthTableFooter.swift */; };
-		8456FAAD27EA11380090152C /* CellFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456FAAC27EA11380090152C /* CellFive.swift */; };
-		845CF84727CCCB610031233E /* CellThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84627CCCB610031233E /* CellThree.swift */; };
-		845CF84927CCE10D0031233E /* CellTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84827CCE10D0031233E /* CellTwo.swift */; };
-		845CF84B27CD03B80031233E /* CellOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84A27CD03B80031233E /* CellOne.swift */; };
+		8456FAAD27EA11380090152C /* LogOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456FAAC27EA11380090152C /* LogOutCell.swift */; };
+		845CF84727CCCB610031233E /* CellWithHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84627CCCB610031233E /* CellWithHexagon.swift */; };
+		845CF84927CCE10D0031233E /* CellWithButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84827CCE10D0031233E /* CellWithButtons.swift */; };
+		845CF84B27CD03B80031233E /* CellWithPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CF84A27CD03B80031233E /* CellWithPhotos.swift */; };
 		846072BB27C3A62C00AFC6E8 /* StringLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846072BA27C3A62C00AFC6E8 /* StringLocalization.swift */; };
 		846C47A227ABF69200E7784F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C47A127ABF69200E7784F /* MapViewController.swift */; };
-		847C1D7F27CE19A80087499B /* CellFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C1D7E27CE19A80087499B /* CellFour.swift */; };
+		847C1D7F27CE19A80087499B /* InformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C1D7E27CE19A80087499B /* InformationCell.swift */; };
 		8483090427B533B4001DFB82 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483090327B533B4001DFB82 /* LoginManager.swift */; };
 		84AA5A6E279E9B9700157AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AA5A6D279E9B9700157AFA /* Assets.xcassets */; };
 		84AA5A71279E9B9700157AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AA5A6F279E9B9700157AFA /* LaunchScreen.storyboard */; };
@@ -56,8 +55,7 @@
 		8444661B27BBD3CF00DC79CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		844C4CAE27E205B400650E34 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		844D550727B681920014E66C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		844E005727BE6902007DFD95 /* TextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
-		844E6A2B279FD1DE0039B5CF /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		844E6A2B279FD1DE0039B5CF /* CellIndices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIndices.swift; sourceTree = "<group>"; };
 		844ED1B027AD23D80050C874 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		84549E9A27A285A2001A49BD /* EmailHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailHelper.swift; sourceTree = "<group>"; };
 		84549E9C27A285C2001A49BD /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
@@ -66,15 +64,15 @@
 		8456B44A27BA4F390040EB32 /* DataSourceSignin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSignin.swift; sourceTree = "<group>"; };
 		8456B44C27BA56990040EB32 /* AuthTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTableHeader.swift; sourceTree = "<group>"; };
 		8456B44E27BA64260040EB32 /* AuthTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTableFooter.swift; sourceTree = "<group>"; };
-		8456FAAC27EA11380090152C /* CellFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFive.swift; sourceTree = "<group>"; };
-		845CF84627CCCB610031233E /* CellThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellThree.swift; sourceTree = "<group>"; };
-		845CF84827CCE10D0031233E /* CellTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTwo.swift; sourceTree = "<group>"; };
-		845CF84A27CD03B80031233E /* CellOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellOne.swift; sourceTree = "<group>"; };
+		8456FAAC27EA11380090152C /* LogOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCell.swift; sourceTree = "<group>"; };
+		845CF84627CCCB610031233E /* CellWithHexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithHexagon.swift; sourceTree = "<group>"; };
+		845CF84827CCE10D0031233E /* CellWithButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithButtons.swift; sourceTree = "<group>"; };
+		845CF84A27CD03B80031233E /* CellWithPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithPhotos.swift; sourceTree = "<group>"; };
 		846072B727C3825C00AFC6E8 /* Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Map.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846072BA27C3A62C00AFC6E8 /* StringLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLocalization.swift; sourceTree = "<group>"; };
 		8465A25927CF9ED4007E5ED4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		846C47A127ABF69200E7784F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		847C1D7E27CE19A80087499B /* CellFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFour.swift; sourceTree = "<group>"; };
+		847C1D7E27CE19A80087499B /* InformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCell.swift; sourceTree = "<group>"; };
 		8483090327B533B4001DFB82 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		84AA5A64279E9B9500157AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84AA5A6D279E9B9700157AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,9 +140,8 @@
 		844B122127BD018800635C1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				844E6A2B279FD1DE0039B5CF /* Enum.swift */,
+				844E6A2B279FD1DE0039B5CF /* CellIndices.swift */,
 				8483090327B533B4001DFB82 /* LoginManager.swift */,
-				844E005727BE6902007DFD95 /* TextData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,11 +178,11 @@
 		845CF84527CCC9E10031233E /* TableViewTwoCells */ = {
 			isa = PBXGroup;
 			children = (
-				845CF84A27CD03B80031233E /* CellOne.swift */,
-				845CF84827CCE10D0031233E /* CellTwo.swift */,
-				845CF84627CCCB610031233E /* CellThree.swift */,
-				847C1D7E27CE19A80087499B /* CellFour.swift */,
-				8456FAAC27EA11380090152C /* CellFive.swift */,
+				845CF84A27CD03B80031233E /* CellWithPhotos.swift */,
+				845CF84827CCE10D0031233E /* CellWithButtons.swift */,
+				845CF84627CCCB610031233E /* CellWithHexagon.swift */,
+				847C1D7E27CE19A80087499B /* InformationCell.swift */,
+				8456FAAC27EA11380090152C /* LogOutCell.swift */,
 			);
 			path = TableViewTwoCells;
 			sourceTree = "<group>";
@@ -387,23 +384,22 @@
 				8456B44F27BA64260040EB32 /* AuthTableFooter.swift in Sources */,
 				8483090427B533B4001DFB82 /* LoginManager.swift in Sources */,
 				84E8D52727FB2296009A89D3 /* PhotosDTO.swift in Sources */,
-				844E005827BE6902007DFD95 /* TextData.swift in Sources */,
-				8456FAAD27EA11380090152C /* CellFive.swift in Sources */,
+				8456FAAD27EA11380090152C /* LogOutCell.swift in Sources */,
 				84E8D52527FAF3C7009A89D3 /* MainDTO.swift in Sources */,
 				844C4CAF27E205B400650E34 /* Photos.swift in Sources */,
 				846072BB27C3A62C00AFC6E8 /* StringLocalization.swift in Sources */,
 				844ED1B127AD23D80050C874 /* DescriptionViewController.swift in Sources */,
-				845CF84927CCE10D0031233E /* CellTwo.swift in Sources */,
+				845CF84927CCE10D0031233E /* CellWithButtons.swift in Sources */,
 				84E08DE127FC7B5E00423B5E /* Coordinator.swift in Sources */,
 				84E08DDF27FC44E000423B5E /* DescriptionViewModel.swift in Sources */,
 				840339B7279EC30900592615 /* TableViewInputCell.swift in Sources */,
-				845CF84727CCCB610031233E /* CellThree.swift in Sources */,
+				845CF84727CCCB610031233E /* CellWithHexagon.swift in Sources */,
 				840339B6279EC30600592615 /* LoginViewController.swift in Sources */,
 				8456B44B27BA4F390040EB32 /* DataSourceSignin.swift in Sources */,
 				844D550827B681920014E66C /* LoginViewModel.swift in Sources */,
 				8456B44D27BA56990040EB32 /* AuthTableHeader.swift in Sources */,
 				84549E9F27A285D3001A49BD /* PasswordHelper.swift in Sources */,
-				847C1D7F27CE19A80087499B /* CellFour.swift in Sources */,
+				847C1D7F27CE19A80087499B /* InformationCell.swift in Sources */,
 				84E4AFE727FDB4D700CC5061 /* LoginCoordinator.swift in Sources */,
 				84E4AFE227FD805E00CC5061 /* MapCoordinator.swift in Sources */,
 				84E08DE527FC7C7800423B5E /* AppCoordinator.swift in Sources */,
@@ -411,12 +407,12 @@
 				8456B44927BA36290040EB32 /* DataSourceRegistration.swift in Sources */,
 				84ECE38227DB3ECE00816EBC /* MapViewModel.swift in Sources */,
 				846C47A227ABF69200E7784F /* MapViewController.swift in Sources */,
-				845CF84B27CD03B80031233E /* CellOne.swift in Sources */,
+				845CF84B27CD03B80031233E /* CellWithPhotos.swift in Sources */,
 				84DE861027F5D2D000FEF873 /* Main.swift in Sources */,
 				84549E9B27A285A2001A49BD /* EmailHelper.swift in Sources */,
 				840339B5279EBF4C00592615 /* AppDelegate.swift in Sources */,
 				84549E9D27A285C2001A49BD /* LoginHelper.swift in Sources */,
-				844E6A2C279FD1DE0039B5CF /* Enum.swift in Sources */,
+				844E6A2C279FD1DE0039B5CF /* CellIndices.swift in Sources */,
 				84E4AFE427FD809900CC5061 /* DescriptionCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

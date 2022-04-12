@@ -6,33 +6,27 @@
 //
 
 import UIKit
-import Alamofire
 
 protocol LogOutDelegate: AnyObject {
     func updateClosure()
 }
 
-class CellFive: UITableViewCell {
+class LogOutCell: UITableViewCell {
 
     weak var delegate: LogOutDelegate?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
-    private var colorView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
-    let button1: UIButton = {
+    private let button1: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitleColor(.red, for: .normal)

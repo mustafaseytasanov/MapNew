@@ -8,17 +8,25 @@
 import UIKit
 
 protocol HeaderDelegate: AnyObject {
-    func segmentChanged(param: UISegmentedControl)
+    func segmentChanged(segmentControlIndex: Int)
 }
 
 class AuthTableHeader: UIView {
 
     weak var delegate: HeaderDelegate?
     
-    var segmentControl: UISegmentedControl = {
-        var segment = UISegmentedControl()
-        let arrayOptions = ["Sign in".localized, "Sign up".localized]
-        segment = UISegmentedControl(items: arrayOptions)
+    private let view: UIView
+    init(view: UIView) {
+        self.view = view
+        super.init(frame: CGRect())
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let segmentControl: UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["Sign in".localized,
+                                                 "Sign up".localized])
         segment.selectedSegmentTintColor = UIColor.init(red: 0.5, green: 0.8, blue: 1, alpha: 1)
         segment.backgroundColor = UIColor.white
         segment.selectedSegmentIndex = 1
@@ -26,24 +34,32 @@ class AuthTableHeader: UIView {
     }()
     
     func myHeaderView() -> UIView {
-        let viewHeader = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60))
-        viewHeader.addSubview(segmentControl)
+        
+        view.frame = CGRect(x: 0,
+                            y: 0,
+                            width: UIScreen.main.bounds.width,
+                            height: 60)
+        view.addSubview(segmentControl)
         segmentControl.addTarget(self, action: #selector(segmentHandle(param:)), for: .valueChanged)
-        viewHeader.translatesAutoresizingMaskIntoConstraints = false
+
+        // UI
+        view.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             segmentControl.heightAnchor.constraint(equalToConstant: 40),
             segmentControl.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width-40),
-            segmentControl.topAnchor.constraint(equalTo: viewHeader.topAnchor, constant: 10),
-            segmentControl.bottomAnchor.constraint(equalTo: viewHeader.bottomAnchor, constant: -10),
-            segmentControl.leadingAnchor.constraint(equalTo: viewHeader.leadingAnchor, constant: 20),
-            segmentControl.trailingAnchor.constraint(equalTo: viewHeader.trailingAnchor, constant: -20)
+            segmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            segmentControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
-        return viewHeader
+        
+        return view
     }
     
     @objc func segmentHandle(param: UISegmentedControl) {
-        delegate?.segmentChanged(param: segmentControl)
+        let index = param.selectedSegmentIndex
+        delegate?.segmentChanged(segmentControlIndex: index)
     }
 
 }

@@ -6,22 +6,16 @@
 //
 
 import UIKit
-import Alamofire
-import MapKit
 
-class CellThree: UITableViewCell {
+class CellWithHexagon: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
-    let labelText: UILabel = {
+    private let labelText: UILabel = {
         let label = UILabel()
         label.text = "Have you been to this place".localized
         label.textColor = .gray
@@ -29,7 +23,7 @@ class CellThree: UITableViewCell {
         return label
     }()
     
-    let buttonHexagon: UIButton = {
+    private let buttonHexagon: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         let aPath = UIBezierPath()
@@ -52,20 +46,16 @@ class CellThree: UITableViewCell {
     
     
     
-    let imageView1: UIImageView = {
+    private let imageView1: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "next")
         imageView.image = image
         return imageView
     }()
     
-    let buttonArrow: UIButton = {
-        let button = UIButton()
-        return button
-    }()
+    private let buttonArrow = UIButton()
     
-    
-    private var colorView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
@@ -85,9 +75,6 @@ class CellThree: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with title: Enum) {
-                        
-    }
     
     // UI
     func setupUI() {

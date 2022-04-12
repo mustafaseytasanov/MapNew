@@ -8,19 +8,15 @@
 import UIKit
 import MapKit
 
-class CellFour: UITableViewCell {
+class InformationCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
-    let labelText: UILabel = {
+    private let labelText: UILabel = {
         let label = UILabel()
         label.text = "Information".localized
         label.textColor = .black
@@ -28,7 +24,7 @@ class CellFour: UITableViewCell {
         return label
     }()
     
-    let imageView1: UIImageView = {
+    private let imageView1: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "clock")
         imageView.image = image
@@ -36,33 +32,33 @@ class CellFour: UITableViewCell {
     }()
     
     
-    let imageView2: UIImageView = {
+    private let imageView2: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "smartphone")
         imageView.image = image
         return imageView
     }()
     
-    let imageView3: UIImageView = {
+    private let imageView3: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "web")
         imageView.image = image
         return imageView
     }()
     
-    let horizontalLine1: UIView = {
+    private let horizontalLine1: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()
     
-    let horizontalLine2: UIView = {
+    private let horizontalLine2: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()
     
-    let buttonAddTime: UIButton = {
+    private let buttonAddTime: UIButton = {
         let button = UIButton()
         button.setTitle("Probably open".localized, for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
@@ -70,7 +66,7 @@ class CellFour: UITableViewCell {
         return button
     }()
     
-    let buttonAddPhoneNumber: UIButton = {
+    private let buttonAddPhoneNumber: UIButton = {
         let button = UIButton()
         button.setTitle("Add Phone".localized, for: .normal)
         button.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
@@ -78,7 +74,7 @@ class CellFour: UITableViewCell {
         return button
     }()
     
-    let buttonAddWebsite: UIButton = {
+    private let buttonAddWebsite: UIButton = {
         let button = UIButton()
         button.setTitle("Add website".localized, for: .normal)
         button.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
@@ -86,32 +82,28 @@ class CellFour: UITableViewCell {
         return button
     }()
     
-    let imageView4: UIImageView = {
+    private let imageView4: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "next")
         imageView.image = image
         return imageView
     }()
     
-    let buttonArrow: UIButton = {
+    private let buttonArrow: UIButton = {
         let button = UIButton()
         return button
     }()
     
-    let imageView5: UIImageView = {
+    private let imageView5: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "location")
         imageView.image = image
         return imageView
     }()
     
+    private let mapView = MKMapView()
     
-    let mapView: MKMapView = {
-        let view = MKMapView()
-        return view
-    }()
-    
-    let labelLocation: UILabel = {
+    private let labelLocation: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
@@ -119,7 +111,7 @@ class CellFour: UITableViewCell {
     }()
     
     
-    private var colorView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
@@ -139,7 +131,7 @@ class CellFour: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with model: [MainDTO]) {
+    func configure(with model: [MainDTO], currentTag: Int) {
         labelLocation.text = model[currentTag].address
         let location = CLLocationCoordinate2DMake(model[currentTag].latitude,
                                                   model[currentTag].longitude)

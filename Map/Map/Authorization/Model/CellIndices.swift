@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Enum: Int {
+enum CellIndices: Int {
     case login
     case email
     case password

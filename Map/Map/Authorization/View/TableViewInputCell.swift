@@ -8,44 +8,36 @@
 import UIKit
 
 protocol TableViewInputCellDelegate: AnyObject {
-    func textChange(type: Enum, text: String)
-    func getBoolArray() -> (array: [Bool], signUpData: [String])
+    func textChange(type: CellIndices, text: String)
+    func getValidArrayAndSignUpData() -> (array: [Bool], signUpData: [String])
+    
 }
 
 class TableViewInputCell: UITableViewCell  {
     
-    var type: Enum?
+    var type: CellIndices?
     weak var delegate: TableViewInputCellDelegate?
-                
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
+    var currentState: Int?
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
-    let textField: UITextField = {
+    private let colorView = UIView()
+    
+    private let textField: UITextField = {
         let textFieldValue = UITextField()
         textFieldValue.borderStyle = .roundedRect
         textFieldValue.layer.borderWidth = 1
         textFieldValue.layer.borderColor = UIColor.lightGray.cgColor
         return textFieldValue
     }()
-    
-    
-    private var colorView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
  
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -55,12 +47,15 @@ class TableViewInputCell: UITableViewCell  {
         super.prepareForReuse()
     }
     
-    func configure(with title: Enum) {
+    func configure(with title: CellIndices, segmentControlIndex: Int) {
                 
+        currentState = segmentControlIndex
         type = title
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .allEditingEvents)
         validationResult()
-        if flag == 0 {
+        
+        if segmentControlIndex == 0 {
+
             switch title {
             case .email:
                 textField.placeholder = "E-mail".localized
@@ -89,25 +84,26 @@ class TableViewInputCell: UITableViewCell  {
         }
     }
     
-    // Result of validation
+    // Result of validation    
     func validationResult() {
-        if flag == 1 {
-            if let resultOne = delegate?.getBoolArray().array {
+        
+        if currentState == 1 {
+            if let result = delegate?.getValidArrayAndSignUpData().array {
                 if let name = type {
-                    colorTextField(boolValue: resultOne[name.rawValue])
+                    colorTextField(isValid: result[name.rawValue])
                 }
             }
-            if let resultTwo = delegate?.getBoolArray().signUpData {
+            if let result = delegate?.getValidArrayAndSignUpData().signUpData {
                 if let name = type {
-                    textField.text = resultTwo[name.rawValue]
+                    textField.text = result[name.rawValue]
                 }
             }
         }
     }
     
     // Color of textField
-    func colorTextField(boolValue: Bool) {
-        if boolValue == true {
+    func colorTextField(isValid: Bool) {
+        if isValid == true {
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
         } else {

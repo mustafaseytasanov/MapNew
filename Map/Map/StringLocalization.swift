@@ -16,4 +16,3 @@ extension String {
 
 // How to use
 // "hello".localized
-

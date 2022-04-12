@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginManager: NSObject {
+class LoginManager {
     
     static var isLoggedIn: Bool  {
         get {
@@ -15,7 +15,6 @@ class LoginManager: NSObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "isLoggedIn")
-            UserDefaults.standard.synchronize()
         }
     }
     

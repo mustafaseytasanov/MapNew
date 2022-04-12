@@ -8,15 +8,15 @@
 import UIKit
 import MapKit
 
-var currentTag: Int!
+
 class CustomPointAnnotation: MKPointAnnotation {
-    var tag: Int!
+    var tag: Int = 0
 }
 
 class MapViewController: UIViewController {
     
-    var map = MKMapView()
-    var viewModel: MapViewModel
+    private let map = MKMapView()
+    private let viewModel: MapViewModel
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -35,10 +35,10 @@ class MapViewController: UIViewController {
     }
     
     func setupMap() {
-        map = MKMapView(frame: CGRect(x: 0,
-                                      y: 0,
-                                      width: UIScreen.main.bounds.width,
-                                      height: UIScreen.main.bounds.height))
+        map.frame = CGRect(x: 0,
+                           y: 0,
+                           width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height)
         let location = CLLocationCoordinate2DMake(41.878, -87.629)
         let span = MKCoordinateSpan(latitudeDelta: 0.003,
                                     longitudeDelta: 0.003)
@@ -72,13 +72,13 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
-        // auxiliary function
+        // Auxiliary function
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
                 
         if let annotation = view.annotation as? CustomPointAnnotation {
-            currentTag = annotation.tag!
+            viewModel.currentTag = annotation.tag
         }
         viewModel.didSubmitAction()
     }

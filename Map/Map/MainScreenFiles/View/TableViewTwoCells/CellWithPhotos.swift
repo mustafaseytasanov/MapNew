@@ -7,35 +7,27 @@
 
 import UIKit
 import SnapKit
-import Alamofire
-import SwiftyJSON
-import MapKit
 
+class CellWithPhotos: UITableViewCell {
 
-class CellOne: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
 
-    private var colorView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
-    private var photoView: UIView = {
+    private let photoView: UIView = {
         let view = UIView()
         return view
     }()
     
-    var photoScrollView: UIScrollView = {
+    private let photoScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = true
@@ -43,28 +35,15 @@ class CellOne: UITableViewCell {
         return scrollView
     }()
     
-    var pageControl: UIPageControl = {
+    private let pageControl: UIPageControl = {
         let page = UIPageControl()
         page.currentPage = 0
         page.currentPageIndicatorTintColor = .white
         return page
     }()
     
-
-    let imageViewArr: [UIImageView] = {
-        
-        var imageViewArrayInternal = [UIImageView]()
-        
-        for i in 0..<imageViewArray.count {
-            var imageView = UIImageView()
-            imageView = imageViewArray[i]
-            imageViewArrayInternal.append(imageView)
-        }
-
-        return imageViewArrayInternal
-    }()
     
-    let label1: UILabel = {
+    private let label1: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 21)
@@ -72,14 +51,14 @@ class CellOne: UITableViewCell {
     }()
     
     
-    let label2: UILabel = {
+    private let label2: UILabel = {
         var label = UILabel()
         label.textColor = .gray
         label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    let orangeButton: UIButton = {
+    private let orangeButton: UIButton = {
         var button = UIButton()
         button.layer.cornerRadius = 25
         button.backgroundColor = .orange
@@ -90,7 +69,7 @@ class CellOne: UITableViewCell {
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        // setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -106,12 +85,16 @@ class CellOne: UITableViewCell {
         photoScrollView.setContentOffset(CGPoint(x:x, y:0), animated: true)
     }
     
-    func configure(with model: [MainDTO]) {
+    
+    private var photosArray = [UIImageView]()
+    
+    func configure(with model: [MainDTO], currentTag: Int, arrayOfPhotos: [UIImageView]) {
         
         label1.text = model[currentTag].name
         label2.text = "Place in ".localized + model[currentTag].locality
-        pageControl.numberOfPages = imageViewArray.count
-
+        pageControl.numberOfPages = arrayOfPhotos.count
+        photosArray = arrayOfPhotos
+        setupUI()
     }
     
     // UI
@@ -121,12 +104,12 @@ class CellOne: UITableViewCell {
         contentView.backgroundColor = .lightGray
         contentView.snp.makeConstraints { (make) -> Void in
             make.size.equalTo(CGSize(
-                width: UIScreen.main.bounds.width * CGFloat(imageViewArr.count),
+                width: UIScreen.main.bounds.width * CGFloat(photosArray.count),
                 height: UIScreen.main.bounds.width*0.75 + 10 + 70))
         }
         contentView.addSubview(colorView)
         colorView.snp.makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSize(width: UIScreen.main.bounds.width * CGFloat(imageViewArr.count),
+            make.size.equalTo(CGSize(width: UIScreen.main.bounds.width * CGFloat(photosArray.count),
                                      height: UIScreen.main.bounds.width*0.75 + 70))
             make.edges.equalTo(contentView).inset(UIEdgeInsets(
                 top: 0, left: 0, bottom: 10, right: 0))
@@ -146,8 +129,8 @@ class CellOne: UITableViewCell {
             make.left.equalTo(colorView).offset(0)
         }
         pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
-        for i in 0..<imageViewArr.count {
-            let imageView = imageViewArr[i]
+        for i in 0..<photosArray.count {
+            let imageView = photosArray[i]
             let xPosition = UIScreen.main.bounds.width * CGFloat(i)
             photoScrollView.addSubview(imageView)
             imageView.snp.makeConstraints { (make) -> Void in
@@ -173,6 +156,5 @@ class CellOne: UITableViewCell {
             make.top.equalTo(colorView).offset(UIScreen.main.bounds.width*0.75 + 10)
             make.left.equalTo(colorView).offset(UIScreen.main.bounds.width - 66)
         }
-        
     }
 }

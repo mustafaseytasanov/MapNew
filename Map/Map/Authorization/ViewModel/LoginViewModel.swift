@@ -8,8 +8,8 @@
 import Foundation
 
 protocol LoginViewModelProtocol: AnyObject {
-    func checkingText() -> Bool
-    func checkingTextTwo()
+    func signUpValidation() -> Bool
+    func userAuthorization()
     func valueSwitch(_ value: Bool)
 }
 
@@ -17,100 +17,108 @@ protocol LoginViewModelProtocol: AnyObject {
 final class LoginViewModel: LoginViewModelProtocol {
     
     var moveToMap: () -> Void = {}
+    var segmentedControlSelectedIndex = 1
     
-    var allElements = [false, false, false, false, false]
-    var allElementsTwo = [false, false]
+    var signUpParametersChecking = [false, false, false, false, true]
+    var signInParametersChecking = [false, false]
+    var arrayValidation = [true, true, true, true]
     
-    let elements = [Enum.login, Enum.email, Enum.password, Enum.repeatPassword]
-    let elementsTwo = [Enum.email, Enum.password]
-
-    var signInData = SignInData()
-    var signUpData = SignUpData()
+    let elements = [CellIndices.login, CellIndices.email,
+                    CellIndices.password, CellIndices.repeatPassword]
+    let elementsTwo = [CellIndices.email, CellIndices.password]
     
-    var array = [true, true, true, true]
+    var signUpLogin: String = ""
+    var signUpEmail: String = ""
+    var signUpPassword: String = ""
+    var signUpRepeatPassword: String = ""
+    var signInEmail: String = ""
+    var signInPassword: String = ""
     
-    func updateValues(text: String, cellType: Enum) {
+    
+    func updateValues(text: String, cellType: CellIndices) {
                 
-        if flag == 1 {
+        if segmentedControlSelectedIndex == 1 {
             switch cellType {
             case .login:
-                signUpData.login = text
+                signUpLogin = text
             case .email:
-                signUpData.email = text
+                signUpEmail = text
             case .password:
-                signUpData.password = text
+                signUpPassword = text
             case .repeatPassword:
-                signUpData.repeatPassword = text
+                signUpRepeatPassword = text
             }
         } else {
             switch cellType {
             case .email:
-                signInData.email = text
+                signInEmail = text
             case .password:
-                signInData.password = text
+                signInPassword = text
             default:
                 break
             }
         }
     }
     
-    func checkingText() -> Bool {
+    func signUpValidation() -> Bool {
         
-        allElements[0] = LoginHelper.isValidLogin(signUpData.login)
-        allElements[1] = EmailHelper.isValidEmail(signUpData.email)
-        allElements[2] = PasswordHelper.isValidPassword(signUpData.password)
-        allElements[3] = signUpData.password == signUpData.repeatPassword
+        signUpParametersChecking[0] = LoginHelper.isValidLogin(signUpLogin)
+        signUpParametersChecking[1] = EmailHelper.isValidEmail(signUpEmail)
+        signUpParametersChecking[2] = PasswordHelper.isValidPassword(signUpPassword)
+        signUpParametersChecking[3] = signUpPassword == signUpRepeatPassword
+
+        arrayValidation[0] = LoginHelper.isValidLogin(signUpLogin)
+        arrayValidation[1] = EmailHelper.isValidEmail(signUpEmail)
+        arrayValidation[2] = PasswordHelper.isValidPassword(signUpPassword)
+        arrayValidation[3] = signUpPassword == signUpRepeatPassword
         
-        array[0] = LoginHelper.isValidLogin(signUpData.login)
-        array[1] = EmailHelper.isValidEmail(signUpData.email)
-        array[2] = PasswordHelper.isValidPassword(signUpData.password)
-        array[3] = signUpData.password == signUpData.repeatPassword
-        
-        if allElements[0] == true && allElements[1] == true &&
-                allElements[2] == true && allElements[3] == true &&
-                allElements[4] == true {
+        if signUpParametersChecking[0] && signUpParametersChecking[1] &&
+            signUpParametersChecking[2] && signUpParametersChecking[3] &&
+            signUpParametersChecking[4] {
             
             moveToMap()
     
-            LoginManager.login = signUpData.login
-            LoginManager.email = signUpData.email
-            LoginManager.password = signUpData.password
+            LoginManager.login = signUpLogin
+            LoginManager.email = signUpEmail
+            LoginManager.password = signUpPassword
             LoginManager.isLoggedIn = true
-            signUpData.login = ""
-            signUpData.email = ""
-            signUpData.password = ""
-            signUpData.repeatPassword = ""
+
+            signUpLogin = ""
+            signUpEmail = ""
+            signUpPassword = ""
+            signUpRepeatPassword = ""
+            
             return true
         }
         return false
     }
     
-    func getBoolArray() -> (array: [Bool], signUpData: [String]) {
-        return (array, [signUpData.login, signUpData.email,
-                       signUpData.password, signUpData.repeatPassword])
+    func getValidArrayAndSignUpData() -> (array: [Bool], signUpData: [String]) {
+        return (arrayValidation, [signUpLogin, signUpEmail,
+                       signUpPassword, signUpRepeatPassword])
     }
     
     
-    func checkingTextTwo() {
+    func userAuthorization() {
         
-        allElementsTwo[0] = signInData.email == LoginManager.email
-        allElementsTwo[1] = signInData.password == LoginManager.password
+        signInParametersChecking[0] = signInEmail == LoginManager.email
+        signInParametersChecking[1] = signInPassword == LoginManager.password
         
-        if allElementsTwo[0] == true && allElementsTwo[1] == true {
+        if signInParametersChecking[0] && signInParametersChecking[1] {
             
             moveToMap()
             
             LoginManager.isLoggedIn = true
-            signInData.email = ""
-            signInData.password = ""
+            signInEmail = ""
+            signInPassword = ""
         }
     }
     
     func valueSwitch(_ value: Bool) {
         if value {
-            allElements[4] = true
+            signUpParametersChecking[4] = true
         } else {
-            allElements[4] = false
+            signUpParametersChecking[4] = false
         }
     }
         

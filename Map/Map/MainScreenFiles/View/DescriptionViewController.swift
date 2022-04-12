@@ -10,9 +10,8 @@ import SnapKit
 
 class DescriptionViewController: UIViewController {
     
-    var tableView = UITableView()
-    
-    var viewModel: DescriptionViewModel
+    private let tableView = UITableView()
+    private let viewModel: DescriptionViewModel
     init(viewModel: DescriptionViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -20,7 +19,6 @@ class DescriptionViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,47 +29,47 @@ class DescriptionViewController: UIViewController {
             self.setupTableView()
             self.setupNavigationBar()
         }
-        
     }
     
     func makeRequests() {
         
         viewModel.requestTwo()
+        
+        var idx = 0
+        viewModel.imageViewArray = []
         viewModel.waiting = {
             
-            imageViewArray = []
-            
-            var idx = 0
             if self.viewModel.dataStorage.count > 0 {
                 let path = self.viewModel.dataStorage[idx].prefix + "original" +
                     self.viewModel.dataStorage[idx].suffix
-                self.viewModel.requestThree(from: path)
                 idx += 1
+                self.viewModel.requestThree(from: path)
             }
+        }
             
-            self.viewModel.waitingTwo = {
-                if idx <= self.viewModel.dataStorage.count-1 {
-                    let path = self.viewModel.dataStorage[idx].prefix + "original" +
-                        self.viewModel.dataStorage[idx].suffix
-                    self.viewModel.requestThree(from: path)
-                    idx += 1
-                } else {
-                    self.viewModel.readySetupContent()
-                }
+        viewModel.waitingTwo = {
+            if idx <= self.viewModel.dataStorage.count-1 {
+                let path = self.viewModel.dataStorage[idx].prefix + "original" +
+                    self.viewModel.dataStorage[idx].suffix
+                idx += 1
+                self.viewModel.requestThree(from: path)
+            } else {
+                self.viewModel.readySetupContent()
             }
         }
     }
     
     
     private func setupTableView() {
-        tableView = UITableView(frame: CGRect(
-            x: 0, y: -64, width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.height + 64), style: .plain)
-        tableView.register(CellOne.self, forCellReuseIdentifier: "CellOne")
-        tableView.register(CellTwo.self, forCellReuseIdentifier: "CellTwo")
-        tableView.register(CellThree.self, forCellReuseIdentifier: "CellThree")
-        tableView.register(CellFour.self, forCellReuseIdentifier: "CellFour")
-        tableView.register(CellFive.self, forCellReuseIdentifier: "CellFive")
+        tableView.frame = CGRect(x: 0,
+                                 y: -64,
+                                 width: UIScreen.main.bounds.width,
+                                 height: UIScreen.main.bounds.height + 64)
+        tableView.register(CellWithPhotos.self, forCellReuseIdentifier: "CellWithPhotos")
+        tableView.register(CellWithButtons.self, forCellReuseIdentifier: "CellWithButtons")
+        tableView.register(CellWithHexagon.self, forCellReuseIdentifier: "CellWithHexagon")
+        tableView.register(InformationCell.self, forCellReuseIdentifier: "InformationCell")
+        tableView.register(LogOutCell.self, forCellReuseIdentifier: "LogOutCell")
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -119,23 +117,25 @@ extension DescriptionViewController: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            let cell: CellOne = tableView.dequeueReusableCell(withIdentifier: "CellOne") as! CellOne
-            let model = viewModel.dataFromMap
-            cell.configure(with: model)
+            let cell: CellWithPhotos = tableView.dequeueReusableCell(withIdentifier: "CellWithPhotos") as! CellWithPhotos
+            let model = viewModel.dataFromMapMainData
+            cell.configure(with: model,
+                           currentTag: viewModel.dataFromMapCurrentTag,
+                           arrayOfPhotos: viewModel.imageViewArray)
             return cell
         case 1:
-            let cell: CellTwo = tableView.dequeueReusableCell(withIdentifier: "CellTwo") as! CellTwo
+            let cell: CellWithButtons = tableView.dequeueReusableCell(withIdentifier: "CellWithButtons") as! CellWithButtons
             return cell
         case 2:
-            let cell: CellThree = tableView.dequeueReusableCell(withIdentifier: "CellThree") as! CellThree
+            let cell: CellWithHexagon = tableView.dequeueReusableCell(withIdentifier: "CellWithHexagon") as! CellWithHexagon
             return cell
         case 3:
-            let cell: CellFour = tableView.dequeueReusableCell(withIdentifier: "CellFour") as! CellFour
-            let model = viewModel.dataFromMap
-            cell.configure(with: model)
+            let cell: InformationCell = tableView.dequeueReusableCell(withIdentifier: "InformationCell") as! InformationCell
+            let model = viewModel.dataFromMapMainData
+            cell.configure(with: model, currentTag: viewModel.dataFromMapCurrentTag)
             return cell
         default:
-            let cell: CellFive = tableView.dequeueReusableCell(withIdentifier: "CellFive") as! CellFive
+            let cell: LogOutCell = tableView.dequeueReusableCell(withIdentifier: "LogOutCell") as! LogOutCell
             cell.delegate = self
             return cell
         }

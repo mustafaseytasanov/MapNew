@@ -16,7 +16,8 @@ class MapViewModel: protocolForRequestOne {
     var updator: () -> Void = {}
     
     var didSubmitAction: () -> Void = {}
-    
+    var currentTag: Int = 0
+        
     // Request One
     func requestOne() {
         

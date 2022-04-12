@@ -8,17 +8,16 @@
 import UIKit
 import SnapKit
 
-var flag = 1
 
 class LoginViewController: UIViewController  {
                 
-    var tableView = UITableView()
-    var dataSource = DataSourceRegistration()
-    var dataSourceTwo = DataSourceSignin()
-    var authTableHeader = AuthTableHeader()
-    var authTableFooter = AuthTableFooter()
-    
-    var viewModel: LoginViewModel
+    private let tableView = UITableView()    
+    let dataSource = DataSourceRegistration()
+    let dataSourceTwo = DataSourceSignin()
+    let authTableHeader = AuthTableHeader(view: UIView())
+    let authTableFooter = AuthTableFooter(viewForSignUp: UIView(),
+                                          viewForSignIn: UIView())
+    private let viewModel: LoginViewModel
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -34,7 +33,7 @@ class LoginViewController: UIViewController  {
     }
     
     private func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.frame = view.bounds
         tableView.register(TableViewInputCell.self, forCellReuseIdentifier: "TableViewInputCell")
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
@@ -51,11 +50,11 @@ class LoginViewController: UIViewController  {
 
 
 extension LoginViewController: HeaderDelegate {
-    
-    func segmentChanged(param: UISegmentedControl) {
-        flag = param.selectedSegmentIndex
+        
+    func segmentChanged(segmentControlIndex: Int) {
+        viewModel.segmentedControlSelectedIndex = segmentControlIndex
         tableView.reloadData()
-        if flag == 1 {
+        if viewModel.segmentedControlSelectedIndex == 1 {
             tableView.dataSource = dataSource
             tableView.tableFooterView = authTableFooter.myFooterOneView()
         } else {
@@ -68,19 +67,20 @@ extension LoginViewController: HeaderDelegate {
 
 extension LoginViewController: AuthTableFooterDelegate {
     
-    func buttonHandleUp(param: UIButton) {
-        let validationValue = viewModel.checkingText()
+    func buttonHandleUp() {
+        let validationValue = viewModel.signUpValidation()
         if validationValue == false {
             tableView.reloadData()
         }
     }
     
-    func buttonHandleIn(param: UIButton) {
-        viewModel.checkingTextTwo()
+    func buttonHandleIn() {
+        viewModel.userAuthorization()
     }
     
-    func valueSwitchChanged(param: UISwitch) {
-        if param.isOn {
+    func valueSwitchChanged(value: Bool) {
+
+        if value {
             viewModel.valueSwitch(true)
         } else {
             viewModel.valueSwitch(false)
@@ -90,11 +90,11 @@ extension LoginViewController: AuthTableFooterDelegate {
 
 extension LoginViewController: DataSourceRegistrationDelegate {
     
-    func moveToController(text: String, type: Enum) {
+    func moveToController(text: String, type: CellIndices) {
         viewModel.updateValues(text: text, cellType: type)
     }
     
     func getArray() -> (array: [Bool], signUpData: [String]) {
-        return viewModel.getBoolArray()
+        return viewModel.getValidArrayAndSignUpData()
     }
 }

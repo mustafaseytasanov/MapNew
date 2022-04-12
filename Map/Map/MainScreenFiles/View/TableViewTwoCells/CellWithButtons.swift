@@ -6,41 +6,36 @@
 //
 
 import UIKit
-import Alamofire
 
-class CellTwo: UITableViewCell {
+class CellWithButtons: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
-    private var colorView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
-    let button1: UIButton = {
+    private let button1: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 25
         button.backgroundColor = .blue
         return button
     }()
     
-    let imageView1: UIImageView = {
+    private let imageView1: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "save-instagram-2")
         imageView.image = image
         return imageView
     }()
     
-    let label1: UILabel = {
+    private let label1: UILabel = {
         let label = UILabel()
         label.text = "Save".localized
         label.textColor = .blue
@@ -48,21 +43,21 @@ class CellTwo: UITableViewCell {
         return label
     }()
     
-    let button2: UIButton = {
+    private let button2: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 25
         button.backgroundColor = .blue
         return button
     }()
     
-    let imageView2: UIImageView = {
+    private let imageView2: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "love-2")
         imageView.image = image
         return imageView
     }()
     
-    let label2: UILabel = {
+    private let label2: UILabel = {
         let label = UILabel()
         label.text = "Like".localized
         label.textColor = .blue
@@ -70,21 +65,21 @@ class CellTwo: UITableViewCell {
         return label
     }()
     //
-    let button3: UIButton = {
+    private let button3: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 25
         button.backgroundColor = .blue
         return button
     }()
     
-    let imageView3: UIImageView = {
+    private let imageView3: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "writing")
         imageView.image = image
         return imageView
     }()
     
-    let label3: UILabel = {
+    private let label3: UILabel = {
         let label = UILabel()
         label.text = "Write a Tip".localized
         label.textColor = .blue
@@ -93,7 +88,6 @@ class CellTwo: UITableViewCell {
     }()
     
 
- 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -107,9 +101,6 @@ class CellTwo: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with title: Enum) {
-                        
-    }
     
     // UI
     func setupUI() {
@@ -126,7 +117,6 @@ class CellTwo: UITableViewCell {
                                      height: 100))
             make.edges.equalTo(contentView).inset(UIEdgeInsets(
                 top: 10, left: 0, bottom: 10, right: 0))
-
         }
         colorView.addSubview(button1)
         colorView.addSubview(button2)
@@ -164,7 +154,6 @@ class CellTwo: UITableViewCell {
             make.top.equalTo(button3).offset(15)
             make.left.equalTo(button3).offset(19)
         }
-        
         colorView.addSubview(label1)
         label1.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(70)
@@ -180,7 +169,6 @@ class CellTwo: UITableViewCell {
             make.top.equalTo(70)
             make.centerX.equalTo(UIScreen.main.bounds.width - 75)
         }
-        
     }
 }
 

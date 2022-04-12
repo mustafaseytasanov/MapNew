@@ -20,7 +20,7 @@ extension DataSourceSignin: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: TableViewInputCell = tableView.dequeueReusableCell(withIdentifier: "TableViewInputCell") as! TableViewInputCell
-        cell.configure(with: object.elementsTwo[indexPath.row])
+        cell.configure(with: object.elementsTwo[indexPath.row], segmentControlIndex: 0)
         return cell
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DataSourceRegistrationDelegate: AnyObject {
-    func moveToController(text: String, type: Enum)
+    func moveToController(text: String, type: CellIndices)
     func getArray() -> (array: [Bool], signUpData: [String])
 }
 
@@ -26,7 +26,7 @@ extension DataSourceRegistration: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: TableViewInputCell = tableView.dequeueReusableCell(withIdentifier: "TableViewInputCell") as! TableViewInputCell
-        cell.configure(with: object.elements[indexPath.row])
+        cell.configure(with: object.elements[indexPath.row], segmentControlIndex: 1)
         cell.delegate = self
         return cell
     }
@@ -34,14 +34,15 @@ extension DataSourceRegistration: UITableViewDataSource {
 
 extension DataSourceRegistration: TableViewInputCellDelegate {
 
-    func textChange(type: Enum, text: String) {
+    func textChange(type: CellIndices, text: String) {
         delegate?.moveToController(text: text, type: type)
     }
     
-    func getBoolArray() -> (array: [Bool], signUpData: [String]) {
+    func getValidArrayAndSignUpData() -> (array: [Bool], signUpData: [String]) {
         if let callFunction = delegate?.getArray() {
             return callFunction
         }
         return ([], [])
     }
+    
 }
