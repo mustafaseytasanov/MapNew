@@ -25,38 +25,38 @@ class DescriptionViewController: UIViewController {
         
         makeRequests()
         
-        viewModel.readySetupContent = {
-            self.setupTableView()
-            self.setupNavigationBar()
+        viewModel.readySetupContent = { [weak self] in
+            self?.setupTableView()
+            self?.setupNavigationBar()
         }
     }
     
     func makeRequests() {
         
-        viewModel.requestTwo()
-        
-        var idx = 0
-        viewModel.imageViewArray = []
-        viewModel.waiting = {
+        viewModel.requestTwo { [weak self] result in
             
-            if self.viewModel.dataStorage.count > 0 {
-                let path = self.viewModel.dataStorage[idx].prefix + "original" +
-                    self.viewModel.dataStorage[idx].suffix
+            var idx = 0
+            self?.viewModel.imageViewArray = []
+            if result.count > 0 {
+                let path = result[idx].prefix + "original" + result[idx].suffix
                 idx += 1
-                self.viewModel.requestThree(from: path)
-            }
-        }
-            
-        viewModel.waitingTwo = {
-            if idx <= self.viewModel.dataStorage.count-1 {
-                let path = self.viewModel.dataStorage[idx].prefix + "original" +
-                    self.viewModel.dataStorage[idx].suffix
-                idx += 1
-                self.viewModel.requestThree(from: path)
+                self?.viewModel.requestThree(from: path)
             } else {
-                self.viewModel.readySetupContent()
+                self?.viewModel.readySetupContent()
+            }
+                
+            self?.viewModel.waiting = { [weak self] in
+                if idx <= result.count-1 {
+                    let path = result[idx].prefix + "original" + result[idx].suffix
+                    idx += 1
+                    self?.viewModel.requestThree(from: path)
+                } else {
+                    self?.viewModel.readySetupContent()
+                }
             }
         }
+        
+        
     }
     
     

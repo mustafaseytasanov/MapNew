@@ -22,14 +22,13 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
     var dataStorage: [PhotosDTO] = []
     
     var waiting: () -> Void = {}
-    var waitingTwo: () -> Void = {}
     var readySetupContent: () -> Void = {}
     
     var toMap: () -> Void = {}
     var toLogin: () -> Void = {}
 
     // Request Two
-    func requestTwo() {
+    func requestTwo(completion: @escaping([PhotosDTO]) -> Void) {
         
         let currentFsqID = dataFromMapMainData[dataFromMapCurrentTag].fsqId
 
@@ -56,7 +55,7 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
                 let photoResponce = try decoder.decode([Photos].self, from: data)
                 DispatchQueue.main.async {
                     self.dataStorage = photoResponce.map {PhotosDTO( from: $0) }
-                    self.waiting()
+                    completion(self.dataStorage)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -70,7 +69,7 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
     func requestThree(from url: String) {
         
         let url = URL(string: url)!
-        let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, responce, error) in
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, responce, error) in
             guard let data = data, error == nil else {
                 return
             }
@@ -78,8 +77,8 @@ class DescriptionViewModel: protocolForRequestsTwoAndThree {
                 let imageView = UIImageView()
                 let image = UIImage(data: data)
                 imageView.image = image
-                self?.imageViewArray.append(imageView)
-                self?.waitingTwo()
+                self.imageViewArray.append(imageView)
+                self.waiting()
             }
         }
         dataTask.resume()
