@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Map
+
+  Created by Nikita on 15.02.2022.
+  
+*/
+
+"Login" = "Login";
+"E-mail" = "E-mail";
+"Password" = "Password";
+"Repeat password" = "Repeat password";
+"Sign in" = "Sign in";
+"Sign up" = "Sign up";
+"Agree with the rules" = "Agree with the rules";
+"Place in " = "Place in ";
+"Save" = "Save";
+"Like" = "Like";
+"Write a Tip" = "Write a Tip";
+"Have you been to this place" = "Have you been to this place";
+"Information" = "Information";
+"Probably open" = "Probably open";
+"Add Phone" = "Add Phone";
+"Add website" = "Add website";
+"Log out" = "Log out";

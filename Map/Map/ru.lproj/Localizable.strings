@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Map
+
+  Created by Nikita on 15.02.2022.
+  
+*/
+
+"Login" = "Логин";
+"E-mail" = "Почта";
+"Password" = "Пароль";
+"Repeat password" = "Повторите пароль";
+"Sign in" = "Войти";
+"Sign up" = "Зарегистрироваться";
+"Agree with the rules" = "Согласен с правилами";
+"Place in " = "Место в ";
+"Save" = "Сохранить";
+"Like" = "Оценить";
+"Write a Tip" = "Написать отзыв";
+"Have you been to this place" = "Тебе довелось побывать в этом месте";
+"Information" = "Информация";
+"Probably open" = "Вероятно открыто";
+"Add Phone" = "Добавить телефон";
+"Add website" = "Добавить веб-сайт";
+"Log out" = "Выйти";
